@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package coffeeshop.item.v1;
+
+option csharp_namespace = "CoffeeShop.Protobuf.Item.V1";
+
+import "google/protobuf/wrappers.proto";
+
+// enum ItemType {
+//   // Beverages
+//   CAPPUCCINO = 0;
+//   COFFEE_BLACK = 1;
+//   COFFEE_WITH_ROOM = 2;
+//   ESPRESSO = 3;
+//   ESPRESSO_DOUBLE = 4;
+//   LATTE = 5;
+//   // Food
+//   CAKEPOP = 6;
+//   CROISSANT = 7;
+//   MUFFIN = 8;
+//   CROISSANT_CHOCOLATE = 9;
+// }
+
+message ItemTypeDto {
+  int32 item_type = 1;
+  string name = 2;
+}
+
+message ItemDto {
+  double price = 1;
+  int32 type = 2; 
+}

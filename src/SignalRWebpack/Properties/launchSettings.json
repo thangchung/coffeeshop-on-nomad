@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "coffeeshop": {
+      "commandName": "Project",
+      "launchUrl": ".",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:3000",
+      "dotnetRunMessages": true
+    }
+  }
+}

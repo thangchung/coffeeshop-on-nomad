@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.47.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.48.0-pre1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="7.0.0-preview.6.22330.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="..\Schema\proto\coffeeshop\item\v1\item.proto" Link="Infrastructure\Protobuf\item.proto" AdditionalImportDirs="..\Schema\proto\" />
+    <Protobuf Include="..\Schema\proto\coffeeshop\item\v1\item_api.proto" Link="Infrastructure\Protobuf\item_api.proto" AdditionalImportDirs="..\Schema\proto\" GrpcServices="Server" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Libs\N8T.Core\N8T.Core.csproj" />
+    <ProjectReference Include="..\Libs\N8T.Infrastructure.EfCore\N8T.Infrastructure.EfCore.csproj" />
+    <ProjectReference Include="..\Libs\N8T.Infrastructure\N8T.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

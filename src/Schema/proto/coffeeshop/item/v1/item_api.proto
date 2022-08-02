@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package coffeeshop.item.v1;
+
+option csharp_namespace = "CoffeeShop.Protobuf.Item.V1";
+
+import "item.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+import "google/api/annotations.proto";
+
+service ItemApi {
+  rpc Ping (google.protobuf.Empty) returns (google.protobuf.Empty) {
+	option (google.api.http) = {
+		get: "/v1/item/ping"
+	};
+  };
+  rpc GetItemTypes(GetItemTypesRequest) returns (GetItemTypesResponse) {
+	option (google.api.http) = {
+		get: "/v1/item-types"
+	};
+  };
+  rpc GetItemsByIds(GetItemsByTypesRequest) returns (GetItemsByTypesResponse) {
+	option (google.api.http) = {
+		get: "/v1/items-by-types/{item_types}"
+	};
+  };
+}
+
+message GetItemTypesRequest {}
+message GetItemTypesResponse {
+  repeated ItemTypeDto item_types = 1;
+}
+
+message GetItemsByTypesRequest {
+  string item_types = 1; // list of item types, e.g. "1,2,3"
+}
+message GetItemsByTypesResponse {
+  repeated ItemDto items = 1;
+}
