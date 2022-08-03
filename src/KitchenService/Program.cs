@@ -8,11 +8,13 @@ using MassTransit;
 using N8T.Infrastructure;
 using N8T.Infrastructure.Controller;
 using N8T.Infrastructure.EfCore;
+using N8T.Infrastructure.OTel;
 using Spectre.Console;
 
 AnsiConsole.Write(new FigletText("Kitchen APIs").Color(Color.MediumPurple));
 
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.AddOTelLogs();
 
 builder.Services
     .AddHttpContextAccessor()
@@ -26,6 +28,9 @@ builder.Services
         svc => svc.AddRepository(typeof(Repository<>)))
     .AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddOTelTracing(builder.Configuration);
+builder.Services.AddOTelMetrics(builder.Configuration);
+
 builder.Services.AddMassTransit(x =>
 {
     x.AddConsumer<KitchenOrderedConsumer>(typeof(KitchenOrderedConsumerDefinition));
@@ -34,7 +39,7 @@ builder.Services.AddMassTransit(x =>
 
     x.UsingRabbitMq((context, cfg) =>
     {
-        cfg.Host("localhost");
+        cfg.Host(builder.Configuration.GetValue<string>("RabbitMqUrl")!);
         cfg.ConfigureEndpoints(context);
     });
 });

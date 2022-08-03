@@ -1,5 +1,5 @@
-﻿using CoffeeShop.Infrastructure.Hubs;
-using CounterService.Domain.DomainEvents;
+﻿using CounterService.Domain.DomainEvents;
+using CounterService.Infrastructure.Hubs;
 using Microsoft.AspNetCore.SignalR;
 
 namespace CounterService.DomainEventHandlers;

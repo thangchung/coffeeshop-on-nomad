@@ -1,9 +1,8 @@
-﻿using CoffeeShop.Domain;
-using CounterService.Domain;
+﻿using CounterService.Domain;
 using Microsoft.EntityFrameworkCore;
 using N8T.Infrastructure.EfCore;
 
-namespace CoffeeShop.Infrastructure.Data;
+namespace CounterService.Infrastructure.Data;
 
 public class MainDbContext : AppDbContextBase
 {

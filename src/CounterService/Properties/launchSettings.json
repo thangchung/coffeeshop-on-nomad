@@ -1,13 +1,12 @@
-﻿{
+{
   "profiles": {
     "CounterService": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": false,
-      "applicationUrl": "http://localhost:5002",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "http://localhost:5002",
+      "dotnetRunMessages": true
     }
   }
 }

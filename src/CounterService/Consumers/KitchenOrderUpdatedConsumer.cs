@@ -47,7 +47,7 @@ internal class KitchenOrderUpdatedConsumerDefinition : ConsumerDefinition<Kitche
     public KitchenOrderUpdatedConsumerDefinition()
     {
         // override the default endpoint name
-        // EndpointName = "counter-service";
+        EndpointName = "kitchen-order-updated-counter-service";
 
         // limit the number of messages consumed concurrently
         // this applies to the consumer only, not the endpoint

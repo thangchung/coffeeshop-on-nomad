@@ -47,7 +47,7 @@ namespace DataGen
                     Encoding.UTF8,
                     Application.Json);
 
-                using var httpResponseMessage = await httpClient.PostAsync("/v1/api/orders", orderCommandJson);
+                using var httpResponseMessage = await httpClient.PostAsync("/apis/counter/v1/api/orders", orderCommandJson);
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 await Task.Delay(TimeSpan.FromSeconds(timeUpPeriod), stoppingToken);

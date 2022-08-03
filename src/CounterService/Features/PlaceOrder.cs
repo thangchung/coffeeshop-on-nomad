@@ -5,7 +5,7 @@ using MediatR;
 using N8T.Core.Domain;
 using N8T.Core.Repository;
 
-namespace CoffeeShop.Counter.Features;
+namespace CounterService.Features;
 
 public static class OrderInRouteMapper
 {

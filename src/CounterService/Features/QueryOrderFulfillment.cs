@@ -1,12 +1,11 @@
-﻿using CoffeeShop.Domain;
-using CounterService.Domain;
+﻿using CounterService.Domain;
 using FluentValidation;
 using MediatR;
 using N8T.Core.Repository;
 using N8T.Core.Specification;
 using System.Linq.Expressions;
 
-namespace CoffeeShop.Counter.Features;
+namespace CounterService.Features;
 
 internal static class OrderFulfillmentRouteMapper
 {
@@ -27,7 +26,7 @@ internal class OrderFulfillmentSpec : SpecificationBase<Order>
     {
         AddInclude(x => x.LineItems);
     }
-    
+
     public override Expression<Func<Order, bool>> Criteria => x => x.OrderStatus == OrderStatus.FULFILLED;
 }
 

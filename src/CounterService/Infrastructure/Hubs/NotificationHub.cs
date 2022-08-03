@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 
-namespace CoffeeShop.Infrastructure.Hubs;
+namespace CounterService.Infrastructure.Hubs;
 
 public interface INotificationClient
 {
