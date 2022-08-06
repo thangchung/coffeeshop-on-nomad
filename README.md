@@ -49,18 +49,20 @@ The .NET coffeeshop application runs on Nomad and Consul Connect
 
 # Get starting
 
+Install [Virtual Box](https://www.virtualbox.org/wiki/Downloads) and [Vagrant](https://www.vagrantup.com/docs/installation) on your host. Then run commands below:
+
 ```bash
 > cd nomad
 > vagrant up
 ```
 
-Then, waiting until all jobs available. All the endpoints below:
+Then, waiting until all jobs are available. All the endpoints below:
 - Nomad Dashboard: [http://localhost:4646](http://localhost:4646)
 - Consul UI: [http://localhost:8500](http://localhost:8500)
 - Traefik Dashboard: [http://localhost:8888](http://localhost:8888)
 - RabbitMQ UI: [http://localhost:15672](http://localhost:15672)
 
-Using [client.http](client.http) to explorer the application!
+Using [client.http](client.http) to explore the application!
 
 # References
 
