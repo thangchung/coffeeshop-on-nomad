@@ -10,11 +10,17 @@ using N8T.Infrastructure.Controller;
 using N8T.Infrastructure.EfCore;
 using N8T.Infrastructure.OTel;
 using Spectre.Console;
+using System.Net;
 
 AnsiConsole.Write(new FigletText("Kitchen APIs").Color(Color.MediumPurple));
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.AddOTelLogs();
+
+builder.WebHost.ConfigureKestrel(webBuilder =>
+{
+    webBuilder.Listen(IPAddress.Any, builder.Configuration.GetValue("RestPort", 5004)); // REST
+});
 
 builder.Services
     .AddHttpContextAccessor()

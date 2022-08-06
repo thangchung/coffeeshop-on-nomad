@@ -55,7 +55,7 @@ services:
       - UseLogExporter=console1
       - AspNetCoreInstrumentation__RecordException=true
     ports:
-      - "5002:80"
+      - "5002:5002"
     depends_on:
       - postgresql
       - rabbitmq
@@ -78,7 +78,7 @@ services:
       - UseLogExporter=console1
       - AspNetCoreInstrumentation__RecordException=true
     ports:
-      - "5003:80"
+      - "5003:5003"
     depends_on:
       - postgresql
       - rabbitmq
@@ -100,7 +100,7 @@ services:
       - UseLogExporter=console1
       - AspNetCoreInstrumentation__RecordException=true
     ports:
-      - "5004:80"
+      - "5004:5004"
     depends_on:
       - postgresql
       - rabbitmq
@@ -115,13 +115,13 @@ services:
       dockerfile: ./src/ReverseProxy/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ReverseProxy__Clusters__counterApiCluster__Destinations__destination1__Address=http://counter-service
+      - ReverseProxy__Clusters__counterApiCluster__Destinations__destination1__Address=http://counter-service:5002
       - UseTracingExporter=console1
       - UseMetricsExporter=console1
       - UseLogExporter=console1
       - AspNetCoreInstrumentation__RecordException=true
     ports:
-      - "5000:80"
+      - "5000:5000"
     depends_on:
       - postgresql
       - counter-service
@@ -137,7 +137,7 @@ services:
       context: .
       dockerfile: ./src/DataGen/Dockerfile
     environment:
-      - CoffeeShopApi=http://reverse-proxy
+      - CoffeeShopApi=http://reverse-proxy:5000
     depends_on:
       - reverse-proxy
     restart: always

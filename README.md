@@ -46,3 +46,23 @@ The .NET coffeeshop application runs on Nomad and Consul Connect
     <td></td>
 </tr>
 </table>
+
+# Get starting
+
+```bash
+> cd nomad
+> vagrant up
+```
+
+Then, waiting until all jobs available. All the endpoints below:
+- Nomad Dashboard: [http://localhost:4646](http://localhost:4646)
+- Consul UI: [http://localhost:8500](http://localhost:8500)
+- Traefik Dashboard: [http://localhost:8888](http://localhost:8888)
+- RabbitMQ UI: [http://localhost:15672](http://localhost:15672)
+
+Using [client.http](client.http) to explorer the application!
+
+# References
+
+- Traefix dashboad: https://traefik.io/blog/traefik-proxy-fully-integrates-with-hashicorp-nomad/
+- Rewrite URL on Nomad: https://doc.traefik.io/traefik/migration/v1-to-v2/#strip-and-rewrite-path-prefixes

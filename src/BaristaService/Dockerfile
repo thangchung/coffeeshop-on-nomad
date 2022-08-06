@@ -2,8 +2,8 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
-EXPOSE 80
-HEALTHCHECK CMD curl --fail http://localhost || exit 1
+EXPOSE 5003
+HEALTHCHECK CMD curl --fail http://localhost:5003 || exit 1
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src

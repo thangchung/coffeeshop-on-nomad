@@ -17,7 +17,7 @@ builder.WebHost.ConfigureKestrel(webBuilder =>
         listenOptions => { listenOptions.Protocols = HttpProtocols.Http2; }); // gRPC
 });
 
-builder.Services.AddGrpc().AddJsonTranscoding();
+builder.Services.AddGrpc();//.AddJsonTranscoding();
 
 builder.Services.AddOTelTracing(builder.Configuration);
 builder.Services.AddOTelMetrics(builder.Configuration);

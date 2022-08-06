@@ -66,6 +66,9 @@ vault audit enable file file_path=/var/log/vault_audit.log
 
 echo "Running Nomad jobs..."
 nomad run jobs/traefik.nomad.hcl
+nomad run jobs/postgresdb.nomad.hcl
+nomad run jobs/rabbitmq.nomad.hcl
 nomad run jobs/product-api.nomad.hcl
-# nomad run jobs/countdash.nomad
-# nomad run jobs/whoami-connect.nomad
+nomad run jobs/counter-api.nomad.hcl
+nomad run jobs/barista-api.nomad.hcl
+nomad run jobs/kitchen-api.nomad.hcl

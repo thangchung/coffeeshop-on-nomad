@@ -30,7 +30,8 @@ job "traefik" {
       driver = "docker"
 
       config {
-        image        = "traefik:v2.5"
+        image        = "traefik:v2.8.1"
+        ports        = ["web", "websecure"]
         network_mode = "host"
 
         volumes = [
@@ -46,10 +47,17 @@ entryPoints:
   websecure:
     address: ":443"
 
+api:
+  dashboard: true
+  insecure: true
+
 ping:
   entryPoint: "web"
 
 providers:
+  nomad:
+    endpoint:
+      address: "http://172.26.64.1:4646"
   consulCatalog:
     prefix: "traefik"
     exposedByDefault: false

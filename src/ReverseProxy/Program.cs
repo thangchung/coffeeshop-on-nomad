@@ -1,7 +1,13 @@
 using N8T.Infrastructure.OTel;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.AddOTelLogs();
+
+builder.WebHost.ConfigureKestrel(webBuilder =>
+{
+    webBuilder.Listen(IPAddress.Any, builder.Configuration.GetValue("RestPort", 5000)); // REST
+});
 
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
