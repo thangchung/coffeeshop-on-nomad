@@ -1,3 +1,6 @@
+// https://discuss.hashicorp.com/t/several-consul-connect-upstreams/3739
+// https://discuss.hashicorp.com/t/correct-way-to-connect-to-upstream-that-uses-dynamic-ports/23958/2
+
 job "product-api" {
   datacenters = ["dc1"]
 
@@ -7,31 +10,37 @@ job "product-api" {
     network {
       mode = "bridge"
 
-      // port "product_api_http" { }
+      port "http" {
+        to = 5001
+      }
 
-      // port "product_api_grpc" { }
+      port "grpc" {
+        to = 15001
+      }
     }
 
-    // service {
-    //   name = "product-api"
-    //   port = "5001"
+    service {
+      name = "product-api-http"
+      port = "http"
+      address_mode = "alloc"
 
-    //   connect {
-    //     sidecar_service {}
-    //   }
+      connect {
+        sidecar_service {}
+      }
 
-    //   tags = [
-    //     "traefik.enable=true",
-    //     "traefik.consulcatalog.connect=true",
-    //     "traefik.http.routers.productapi.rule=PathPrefix(`/product-api`)",
-    //     "traefik.http.routers.productapi.middlewares=productapi-stripprefix",
-    //     "traefik.http.middlewares.productapi-stripprefix.stripprefix.prefixes=/product-api",
-    //   ]
-    // }
+      tags = [
+        "traefik.enable=true",
+        "traefik.consulcatalog.connect=true",
+        "traefik.http.routers.productapi.rule=PathPrefix(`/product-api`)",
+        "traefik.http.routers.productapi.middlewares=productapi-stripprefix",
+        "traefik.http.middlewares.productapi-stripprefix.stripprefix.prefixes=/product-api",
+      ]
+    }
 
     service {
-      name = "product-api"
-      port = "15001"
+      name = "product-api-grpc"
+      port = "grpc"
+      address_mode = "alloc"
 
       connect {
         sidecar_service {}
@@ -42,8 +51,9 @@ job "product-api" {
       driver = "docker"
 
       config {
-        image = "ghcr.io/thangchung/coffeeshop-on-nomad/product-service:0.1.0"
+        image = "ghcr.io/thangchung/coffeeshop-on-nomad/product-service:0.1.1"
         // force_pull = true
+        ports = ["http", "grpc"]
       }
 
       env {

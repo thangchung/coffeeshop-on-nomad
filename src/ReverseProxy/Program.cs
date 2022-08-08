@@ -6,7 +6,7 @@ builder.WebHost.AddOTelLogs();
 
 builder.WebHost.ConfigureKestrel(webBuilder =>
 {
-    webBuilder.Listen(IPAddress.Any, builder.Configuration.GetValue("RestPort", 5000)); // REST
+    webBuilder.Listen(IPAddress.Any, builder.Configuration.GetValue("RestPort", 8080)); // REST
 });
 
 builder.Services.AddReverseProxy()

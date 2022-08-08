@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
 EXPOSE 5001
 EXPOSE 15001
-HEALTHCHECK CMD curl --fail http://localhost:5001 || exit 1
+# HEALTHCHECK CMD curl --fail http://localhost:5001 || exit 1
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
@@ -15,12 +15,15 @@ COPY ["src/Libs/N8T.Infrastructure/N8T.Infrastructure.csproj", "src/Libs/N8T.Inf
 RUN dotnet restore "src/ProductService/ProductService.csproj"
 COPY . .
 WORKDIR "/src/src/ProductService"
-RUN dotnet build "ProductService.csproj" -c Release -o /app/build -r linux-x64 /p:PublishReadyToRun=true
+# RUN dotnet build "ProductService.csproj" -c Release -o /app/build -r linux-x64 /p:PublishReadyToRun=true
+RUN dotnet build "ProductService.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "ProductService.csproj" -c Release -o /app/publish -r linux-x64 --self-contained true --no-restore /p:PublishTrimmed=true /p:PublishReadyToRun=true /p:PublishSingleFile=true
+# RUN dotnet publish "ProductService.csproj" -c Release -o /app/publish -r linux-x64 --self-contained true --no-restore /p:PublishTrimmed=true /p:PublishReadyToRun=true /p:PublishSingleFile=true
+RUN dotnet publish "ProductService.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-CMD ["./ProductService"]
+# CMD ["./ProductService"]
+ENTRYPOINT ["dotnet", "ProductService.dll"]

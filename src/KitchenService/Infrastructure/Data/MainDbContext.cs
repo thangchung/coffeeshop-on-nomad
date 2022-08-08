@@ -30,6 +30,5 @@ public class MainDbContext : AppDbContextBase
 
         modelBuilder.Entity<KitchenOrder>().Property(x => x.ItemType).IsRequired();
         modelBuilder.Entity<KitchenOrder>().Property(x => x.ItemName).IsRequired();
-
     }
 }

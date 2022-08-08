@@ -77,8 +77,8 @@ app.UseRouting();
 
 //app.UseAuthorization();
 
-app.MapOrderInApiRoutes();
-app.MapOrderFulfillmentApiRoutes();
+_ = app.MapOrderInApiRoutes()
+    .MapOrderFulfillmentApiRoutes();
 
 app.MapHub<NotificationHub>("/message");
 

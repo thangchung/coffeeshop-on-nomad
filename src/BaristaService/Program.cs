@@ -2,7 +2,6 @@
 
 using BaristaService.Consumers;
 using BaristaService.Domain;
-using CoffeeShop.Infrastructure.Data;
 using MassTransit;
 using N8T.Infrastructure;
 using N8T.Infrastructure.Controller;
@@ -10,6 +9,7 @@ using N8T.Infrastructure.EfCore;
 using N8T.Infrastructure.OTel;
 using Spectre.Console;
 using System.Net;
+using BaristaService.Infrastructure.Data;
 
 AnsiConsole.Write(new FigletText("Barista APIs").Color(Color.MediumPurple));
 

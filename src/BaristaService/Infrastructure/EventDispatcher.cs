@@ -6,7 +6,7 @@ using N8T.Core.Domain;
 
 namespace BaristaService.Infrastructure;
 
-public class EventDispatcher : INotificationHandler<EventWrapper>
+internal class EventDispatcher : INotificationHandler<EventWrapper>
 {
     private readonly IPublishEndpoint _publisher;
 

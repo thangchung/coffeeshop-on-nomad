@@ -27,27 +27,18 @@ public class ItemService : ItemApi.ItemApiBase
         
         var response = new GetItemTypesResponse();
         // beverages
-        //response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.CAPPUCCINO.ToString(), ItemType = (int)ItemType.CAPPUCCINO });
-        //response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.COFFEE_BLACK.ToString(), ItemType = (int)ItemType.COFFEE_BLACK });
-        //response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.COFFEE_WITH_ROOM.ToString(), ItemType = (int)ItemType.COFFEE_WITH_ROOM });
-        //response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.ESPRESSO.ToString(), ItemType = (int)ItemType.ESPRESSO });
-        //response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.ESPRESSO_DOUBLE.ToString(), ItemType = (int)ItemType.ESPRESSO_DOUBLE });
-        //response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.LATTE.ToString(), ItemType = (int)ItemType.LATTE });
-        response.ItemTypes.Add(new ItemTypeDto { Name = "CAPPUCCINO", ItemType = 0 });
-        response.ItemTypes.Add(new ItemTypeDto { Name = "COFFEE_BLACK", ItemType = 1 });
-        response.ItemTypes.Add(new ItemTypeDto { Name = "COFFEE_WITH_ROOM", ItemType = 2 });
-        response.ItemTypes.Add(new ItemTypeDto { Name = "ESPRESSO", ItemType = 3 });
-        response.ItemTypes.Add(new ItemTypeDto { Name = "ESPRESSO_DOUBLE", ItemType = 4 });
-        response.ItemTypes.Add(new ItemTypeDto { Name = "LATTE", ItemType = 5 });
+        response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.CAPPUCCINO.ToString(), ItemType = (int)ItemType.CAPPUCCINO });
+        response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.COFFEE_BLACK.ToString(), ItemType = (int)ItemType.COFFEE_BLACK });
+        response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.COFFEE_WITH_ROOM.ToString(), ItemType = (int)ItemType.COFFEE_WITH_ROOM });
+        response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.ESPRESSO.ToString(), ItemType = (int)ItemType.ESPRESSO });
+        response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.ESPRESSO_DOUBLE.ToString(), ItemType = (int)ItemType.ESPRESSO_DOUBLE });
+        response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.LATTE.ToString(), ItemType = (int)ItemType.LATTE });
         // food
-        //response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.CAKEPOP.ToString(), ItemType = (int)ItemType.CAKEPOP });
-        //response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.CROISSANT.ToString(), ItemType = (int)ItemType.CROISSANT });
-        //response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.MUFFIN.ToString(), ItemType = (int)ItemType.MUFFIN });
-        //response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.CROISSANT_CHOCOLATE.ToString(), ItemType = (int)ItemType.CROISSANT_CHOCOLATE });
-        response.ItemTypes.Add(new ItemTypeDto { Name = "CAKEPOP", ItemType = 6 });
-        response.ItemTypes.Add(new ItemTypeDto { Name = "CROISSANT", ItemType = 7 });
-        response.ItemTypes.Add(new ItemTypeDto { Name = "MUFFIN", ItemType = 8 });
-        response.ItemTypes.Add(new ItemTypeDto { Name = "CROISSANT_CHOCOLATE", ItemType = 9 });
+        response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.CAKEPOP.ToString(), ItemType = (int)ItemType.CAKEPOP });
+        response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.CROISSANT.ToString(), ItemType = (int)ItemType.CROISSANT });
+        response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.MUFFIN.ToString(), ItemType = (int)ItemType.MUFFIN });
+        response.ItemTypes.Add(new ItemTypeDto { Name = ItemType.CROISSANT_CHOCOLATE.ToString(), ItemType = (int)ItemType.CROISSANT_CHOCOLATE });
+        
         return Task.FromResult(response);
     }
 

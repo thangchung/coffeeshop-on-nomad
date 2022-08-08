@@ -1,6 +1,5 @@
 // dotnet ef migrations add InitKitchenDb -c MainDbContext -o Infrastructure/Data/Migrations
-    
-using CoffeeShop.Infrastructure.Data;
+
 using KitchenService.Consumers;
 using KitchenService.Domain;
 using KitchenService.Infrastructure.Data;

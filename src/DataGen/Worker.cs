@@ -29,6 +29,7 @@ namespace DataGen
                 var rand = new Random();
                 var timeUpPeriod = rand.Next(3, 5);
                 _logger.LogInformation("CoffeeShop URL: {url}", _config.GetValue<string>("CoffeeShopApi"));
+                _logger.LogInformation("Submit Order Route: {url}", _config.GetValue<string>("SubmitOrderRoute"));
                 var httpClient = _httpClientFactory.CreateClient();
                 httpClient.BaseAddress = new Uri(_config.GetValue<string>("CoffeeShopApi"), UriKind.Absolute);
 
@@ -47,7 +48,7 @@ namespace DataGen
                     Encoding.UTF8,
                     Application.Json);
 
-                using var httpResponseMessage = await httpClient.PostAsync("/apis/counter/v1/api/orders", orderCommandJson);
+                using var httpResponseMessage = await httpClient.PostAsync(_config.GetValue<string>("SubmitOrderRoute"), orderCommandJson, stoppingToken);
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 await Task.Delay(TimeSpan.FromSeconds(timeUpPeriod), stoppingToken);

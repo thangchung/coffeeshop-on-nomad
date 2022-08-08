@@ -2,7 +2,7 @@
 using CounterService.Infrastructure.Hubs;
 using Microsoft.AspNetCore.SignalR;
 
-namespace CounterService.DomainEventHandlers;
+namespace CounterService.EventHandlers;
 
 public class HandleOrderUpdateEvent : N8T.Infrastructure.Events.DomainEventHandler<OrderUpdate>
 {

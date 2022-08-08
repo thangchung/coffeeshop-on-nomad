@@ -1,7 +1,6 @@
-﻿using KitchenService.Infrastructure.Data;
-using N8T.Infrastructure.EfCore;
+﻿using N8T.Infrastructure.EfCore;
 
-namespace CoffeeShop.Infrastructure.Data;
+namespace KitchenService.Infrastructure.Data;
 
 public class MainDbContextDesignFactory : DbContextDesignFactoryBase<MainDbContext>
 {

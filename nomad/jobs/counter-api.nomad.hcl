@@ -1,3 +1,5 @@
+// https://discuss.hashicorp.com/t/upstream-connection-timeout-does-not-work/32078/5
+// https://www.consul.io/docs/connect/config-entries/service-defaults
 job "counter-api" {
   datacenters = ["dc1"]
 
@@ -15,8 +17,12 @@ job "counter-api" {
       connect {
         sidecar_service {
           proxy {
+            // config {
+            //   local_connect_timeout_ms = 100
+            // }
+
             upstreams {
-              destination_name = "product-api"
+              destination_name = "product-api-grpc"
               local_bind_port  = 15001
             }
             upstreams {
@@ -44,14 +50,14 @@ job "counter-api" {
       driver = "docker"
 
       config {
-        image = "ghcr.io/thangchung/coffeeshop-on-nomad/counter-service:0.1.0"
+        image = "ghcr.io/thangchung/coffeeshop-on-nomad/counter-service:0.1.1"
         // force_pull = true
       }
 
       env {
         ASPNETCORE_ENVIRONMENT = "Development"
         RestPort = "5002"
-        ProductUri = "http://${NOMAD_UPSTREAM_ADDR_product_api}"
+        ProductUri = "http://${NOMAD_UPSTREAM_ADDR_product_api_grpc}"
         ConnectionStrings__counterdb = "Server=${NOMAD_UPSTREAM_IP_postgres_db};Port=5432;Database=postgres;User Id=postgres;Password=P@ssw0rd"
         RabbitMqUrl = "${NOMAD_UPSTREAM_IP_rabbitmq}"
         UseTracingExporter = "console1"
@@ -61,8 +67,8 @@ job "counter-api" {
       }
 
       resources {
-        cpu    = 150
-        memory = 200
+        cpu    = 120
+        memory = 150
       }
     }
   }

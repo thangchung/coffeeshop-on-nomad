@@ -18,18 +18,15 @@ public static class OrderInRouteMapper
 
 internal class OrderInValidator : AbstractValidator<PlaceOrderCommand>
 {
-    public OrderInValidator()
-    {
-    }
 }
 
-public class PlaceOrder : IRequestHandler<PlaceOrderCommand, IResult>
+internal class PlaceOrderHandler : IRequestHandler<PlaceOrderCommand, IResult>
 {
     private readonly IRepository<Order> _orderRepository;
     private readonly IItemGateway _itemGateway;
     private readonly IPublisher _publisher;
 
-    public PlaceOrder(IRepository<Order> orderRepository, IItemGateway itemGateway, IPublisher publisher)
+    public PlaceOrderHandler(IRepository<Order> orderRepository, IItemGateway itemGateway, IPublisher publisher)
     {
         _orderRepository = orderRepository;
         _itemGateway = itemGateway;

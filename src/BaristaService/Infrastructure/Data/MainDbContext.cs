@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using N8T.Infrastructure.EfCore;
 
-namespace CoffeeShop.Infrastructure.Data;
+namespace BaristaService.Infrastructure.Data;
 
 public class MainDbContext : AppDbContextBase
 {

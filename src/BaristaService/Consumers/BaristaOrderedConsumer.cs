@@ -7,7 +7,7 @@ using N8T.Core.Repository;
 
 namespace BaristaService.Consumers;
 
-public class BaristaOrderedConsumer : IConsumer<BaristaOrdered>
+internal class BaristaOrderedConsumer : IConsumer<BaristaOrdered>
 {
     private readonly IRepository<BaristaItem> _baristaItemRepository;
     private readonly IPublisher _publisher;
@@ -27,7 +27,7 @@ public class BaristaOrderedConsumer : IConsumer<BaristaOrdered>
 
         await Task.Delay(CalculateDelay(message.ItemType));
 
-        baristaItem.SetTimeUp(message.OrderId, message.ItemLineId, DateTime.UtcNow);
+        _ = baristaItem.SetTimeUp(message.OrderId, message.ItemLineId, DateTime.UtcNow);
 
         await _baristaItemRepository.AddAsync(baristaItem);
 

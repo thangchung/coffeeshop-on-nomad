@@ -17,23 +17,24 @@ public class EventDispatcher : INotificationHandler<EventWrapper>
 
     public virtual async Task Handle(EventWrapper @eventWrapper, CancellationToken cancellationToken)
     {
-        if (@eventWrapper.Event is BaristaOrderIn baristaOrderInEvent)
+        switch (@eventWrapper.Event)
         {
-            await _publisher.Publish<BaristaOrdered>(new
-            {
-                baristaOrderInEvent.OrderId,
-                baristaOrderInEvent.ItemLineId,
-                baristaOrderInEvent.ItemType
-            }, cancellationToken);
-        }
-        else if (@eventWrapper.Event is KitchenOrderIn kitchenOrderInEvent)
-        {
-            await _publisher.Publish<KitchenOrdered>(new
-            {
-                kitchenOrderInEvent.OrderId,
-                kitchenOrderInEvent.ItemLineId,
-                kitchenOrderInEvent.ItemType
-            }, cancellationToken);
+            case BaristaOrderIn baristaOrderInEvent:
+                await _publisher.Publish<BaristaOrdered>(new
+                {
+                    baristaOrderInEvent.OrderId,
+                    baristaOrderInEvent.ItemLineId,
+                    baristaOrderInEvent.ItemType
+                }, cancellationToken);
+                break;
+            case KitchenOrderIn kitchenOrderInEvent:
+                await _publisher.Publish<KitchenOrdered>(new
+                {
+                    kitchenOrderInEvent.OrderId,
+                    kitchenOrderInEvent.ItemLineId,
+                    kitchenOrderInEvent.ItemType
+                }, cancellationToken);
+                break;
         }
     }
 }

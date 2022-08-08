@@ -3,7 +3,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
 EXPOSE 5003
-HEALTHCHECK CMD curl --fail http://localhost:5003 || exit 1
+# HEALTHCHECK CMD curl --fail http://localhost:5003 || exit 1
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
@@ -15,12 +15,15 @@ COPY ["src/Libs/CoffeeShop.Contracts/CoffeeShop.Contracts.csproj", "src/Libs/Cof
 RUN dotnet restore "src/BaristaService/BaristaService.csproj"
 COPY . .
 WORKDIR "/src/src/BaristaService"
-RUN dotnet build "BaristaService.csproj" -c Release -o /app/build -r linux-x64 /p:PublishReadyToRun=true
+# RUN dotnet build "BaristaService.csproj" -c Release -o /app/build -r linux-x64 /p:PublishReadyToRun=true
+RUN dotnet build "BaristaService.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "BaristaService.csproj" -c Release -o /app/publish -r linux-x64 --self-contained true --no-restore /p:PublishTrimmed=true /p:PublishReadyToRun=true /p:PublishSingleFile=true
+# RUN dotnet publish "BaristaService.csproj" -c Release -o /app/publish -r linux-x64 --self-contained true --no-restore /p:PublishTrimmed=true /p:PublishReadyToRun=true /p:PublishSingleFile=true
+RUN dotnet publish "BaristaService.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-CMD ["./BaristaService"]
+# CMD ["./BaristaService"]
+ENTRYPOINT ["dotnet", "BaristaService.dll"]

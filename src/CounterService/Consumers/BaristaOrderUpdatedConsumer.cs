@@ -8,7 +8,7 @@ using N8T.Core.Repository;
 
 namespace CounterService.Consumers;
 
-public class BaristaOrderUpdatedConsumer : IConsumer<BaristaOrderUpdated>
+internal class BaristaOrderUpdatedConsumer : IConsumer<BaristaOrderUpdated>
 {
     private readonly IRepository<Order> _orderRepository;
     private readonly IPublisher _publisher;
@@ -47,11 +47,11 @@ internal class BaristaOrderUpdatedConsumerDefinition : ConsumerDefinition<Barist
     public BaristaOrderUpdatedConsumerDefinition()
     {
         // override the default endpoint name
-        EndpointName = "barista-order-updated-counter-service";
+        EndpointName = "order-updated";
 
         // limit the number of messages consumed concurrently
         // this applies to the consumer only, not the endpoint
-        ConcurrentMessageLimit = 8;
+        ConcurrentMessageLimit = 1;
     }
 
     protected override void ConfigureConsumer(IReceiveEndpointConfigurator endpointConfigurator,

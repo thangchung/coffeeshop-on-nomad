@@ -1,5 +1,5 @@
-﻿using BaristaService.Domain.DomainEvents;
-using CoffeeShop.Contracts;
+﻿using CoffeeShop.Contracts;
+using KitchenService.Domain.DomainEvents;
 using N8T.Core.Domain;
 
 namespace KitchenService.Domain;

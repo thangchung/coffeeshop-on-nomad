@@ -23,7 +23,7 @@ job "barista-api" {
       driver = "docker"
 
       config {
-        image = "ghcr.io/thangchung/coffeeshop-on-nomad/barista-service:0.1.0"
+        image = "ghcr.io/thangchung/coffeeshop-on-nomad/barista-service:0.1.1"
         // force_pull = true
       }
 
@@ -39,8 +39,8 @@ job "barista-api" {
       }
 
       resources {
-        cpu    = 150
-        memory = 200
+        cpu    = 100
+        memory = 128
       }
     }
   }

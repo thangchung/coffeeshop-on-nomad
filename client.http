@@ -1,17 +1,15 @@
-@productHost = http://localhost:8080
-@counterHost = http://localhost:5002
 @host = http://localhost:8080
 
 ###
-GET {{productHost}}/product-api/v1/item/ping HTTP/1.1
+GET {{host}}/product-api/v1/item/ping HTTP/1.1
 content-type: application/json
 
 ###
-GET {{productHost}}/product-api/v1/item-types HTTP/1.1
+GET {{host}}/product-api/v1/item-types HTTP/1.1
 content-type: application/json
 
 ###
-GET {{productHost}}/product-api/v1/items-by-types/1,2,3 HTTP/1.1
+GET {{host}}/product-api/v1/items-by-types/1,2,3 HTTP/1.1
 content-type: application/json
 
 ###
@@ -38,30 +36,4 @@ content-type: application/json
 
 ###
 GET {{host}}/counter-api/v1/api/fulfillment-orders HTTP/1.1
-content-type: application/json
-
-### on YARP
-POST {{host}}/apis/counter/v1/api/orders HTTP/1.1
-content-type: application/json
-
-{
-  "commandType": 0,
-  "orderSource": 0,
-  "location": 0,
-  "loyaltyMemberId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "baristaItems": [
-    {
-      "itemType": {{$randomInt 0 5}}
-    }
-  ],
-  "kitchenItems": [
-    {
-      "itemType": {{$randomInt 6 9}}
-    }
-  ],
-  "timestamp": "2022-07-04T11:38:00.210Z"
-}
-
-### on YARP
-GET {{host}}/apis/counter/v1/api/fulfillment-orders HTTP/1.1
 content-type: application/json

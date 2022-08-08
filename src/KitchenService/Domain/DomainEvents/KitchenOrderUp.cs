@@ -1,7 +1,7 @@
 ﻿using CoffeeShop.Contracts;
 using N8T.Core.Domain;
 
-namespace BaristaService.Domain.DomainEvents;
+namespace KitchenService.Domain.DomainEvents;
 
 public class KitchenOrderUp : EventBase
 {

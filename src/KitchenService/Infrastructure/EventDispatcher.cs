@@ -1,12 +1,12 @@
-﻿using BaristaService.Domain.DomainEvents;
-using CoffeeShop.Contracts;
+﻿using CoffeeShop.Contracts;
+using KitchenService.Domain.DomainEvents;
 using MassTransit;
 using MediatR;
 using N8T.Core.Domain;
 
 namespace KitchenService.Infrastructure;
 
-public class EventDispatcher : INotificationHandler<EventWrapper>
+internal class EventDispatcher : INotificationHandler<EventWrapper>
 {
     private readonly IPublishEndpoint _publisher;
 

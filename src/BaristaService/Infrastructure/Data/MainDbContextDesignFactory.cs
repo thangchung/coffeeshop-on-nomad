@@ -1,6 +1,6 @@
 ﻿using N8T.Infrastructure.EfCore;
 
-namespace CoffeeShop.Infrastructure.Data;
+namespace BaristaService.Infrastructure.Data;
 
 public class MainDbContextDesignFactory : DbContextDesignFactoryBase<MainDbContext>
 {
