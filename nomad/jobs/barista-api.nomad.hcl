@@ -7,16 +7,12 @@ job "barista-api" {
     network {
       mode = "bridge"
 
-      port "barista_api_http" {}
+      port "http" {}
     }
 
     service {
       name = "barista-api"
-      port = "barista_api_http"
-
-      connect {
-        sidecar_service { }
-      }
+      port = "5003"
     }
 
     task "barista-api" {
@@ -29,9 +25,9 @@ job "barista-api" {
 
       env {
         ASPNETCORE_ENVIRONMENT = "Development"
-        RestPort = "${NOMAD_PORT_barista_api_http}"
-        ConnectionStrings__baristadb = "Server=${NOMAD_IP_barista_api_http};Port=5432;Database=postgres;User Id=postgres;Password=P@ssw0rd"
-        RabbitMqUrl = "${NOMAD_IP_barista_api_http}"
+        RestPort = "5003"
+        ConnectionStrings__baristadb = "Server=${NOMAD_IP_http};Port=5432;Database=postgres;User Id=postgres;Password=P@ssw0rd"
+        RabbitMqUrl = "${NOMAD_IP_http}"
         UseTracingExporter = "console1"
         UseMetricsExporter = "console1"
         UseLogExporter = "console1"
@@ -40,7 +36,7 @@ job "barista-api" {
 
       resources {
         cpu    = 100
-        memory = 128
+        memory = 200
       }
     }
   }

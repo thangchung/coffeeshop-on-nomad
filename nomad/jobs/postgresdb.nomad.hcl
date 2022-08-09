@@ -13,10 +13,6 @@ job "postgres-db" {
     service {
       name = "postgres-db"
       port = "postgres_db"
-
-      connect {
-        sidecar_service {}
-      }
     }
 
     task "postgres-db" {

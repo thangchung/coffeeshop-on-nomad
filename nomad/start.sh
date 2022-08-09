@@ -68,7 +68,6 @@ echo "Running Nomad jobs..."
 nomad run jobs/traefik.nomad.hcl
 nomad run jobs/postgresdb.nomad.hcl
 nomad run jobs/rabbitmq.nomad.hcl
-# nomad run jobs/fabio.nomad.hcl
 nomad run jobs/product-api.nomad.hcl
 nomad run jobs/counter-api.nomad.hcl
 nomad run jobs/barista-api.nomad.hcl

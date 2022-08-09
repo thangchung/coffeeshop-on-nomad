@@ -17,10 +17,6 @@ job "rabbitmq" {
     service {
       name = "rabbitmq"
       port = "broker"
-
-      connect {
-        sidecar_service {}
-      }
     }
 
     task "rabbitmq" {

@@ -6,6 +6,8 @@ job "datagen" {
     
     network {
       mode = "bridge"
+
+      port "http" {}
     }
 
     service {
@@ -38,8 +40,8 @@ job "datagen" {
       }
 
       resources {
-        cpu    = 150
-        memory = 200
+        cpu    = 50
+        memory = 100
       }
     }
   }

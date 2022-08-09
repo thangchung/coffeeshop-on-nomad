@@ -4,7 +4,7 @@
 job "product-api" {
   datacenters = ["dc1"]
 
-  group "product-api" {
+  group "svc" {
     count = 2
     
     network {
@@ -22,7 +22,6 @@ job "product-api" {
     service {
       name = "product-api-http"
       port = "http"
-      address_mode = "alloc"
 
       connect {
         sidecar_service {}
@@ -31,20 +30,22 @@ job "product-api" {
       tags = [
         "traefik.enable=true",
         "traefik.consulcatalog.connect=true",
-        "traefik.http.routers.productapi.rule=PathPrefix(`/product-api`)",
-        "traefik.http.routers.productapi.middlewares=productapi-stripprefix",
-        "traefik.http.middlewares.productapi-stripprefix.stripprefix.prefixes=/product-api",
+        "traefik.http.routers.http.rule=PathPrefix(`/product-api`)",
+        "traefik.http.routers.http.middlewares=http-stripprefix",
+        "traefik.http.middlewares.http-stripprefix.stripprefix.prefixes=/product-api",
       ]
     }
 
     service {
       name = "product-api-grpc"
       port = "grpc"
-      address_mode = "alloc"
 
-      connect {
-        sidecar_service {}
-      }
+      tags = [
+        "traefik.tcp.routers.grpc.rule=HostSNI(`*`)",
+        "traefik.tcp.routers.grpc.entrypoints=grpc",
+        "traefik.tcp.services.product-api-grpc.loadbalancer.server.port=15001",
+        "traefik.enable=true",
+      ]
     }
 
     task "product-api" {

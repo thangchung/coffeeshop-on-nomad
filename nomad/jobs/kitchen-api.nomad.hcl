@@ -7,16 +7,12 @@ job "kitchen-api" {
     network {
       mode = "bridge"
 
-      port "kitchen_api_http" {}
+      port "http" {}
     }
 
     service {
       name = "kitchen-api"
-      port = "kitchen_api_http"
-
-      connect {
-        sidecar_service { }
-      }
+      port = "5004"
     }
 
     task "kitchen-api" {
@@ -29,9 +25,9 @@ job "kitchen-api" {
 
       env {
         ASPNETCORE_ENVIRONMENT = "Development"
-        RestPort = "${NOMAD_PORT_kitchen_api_http}"
-        ConnectionStrings__kitchendb = "Server=${NOMAD_IP_kitchen_api_http};Port=5432;Database=postgres;User Id=postgres;Password=P@ssw0rd"
-        RabbitMqUrl = "${NOMAD_IP_kitchen_api_http}"
+        RestPort = "5004"
+        ConnectionStrings__kitchendb = "Server=${NOMAD_IP_http};Port=5432;Database=postgres;User Id=postgres;Password=P@ssw0rd"
+        RabbitMqUrl = "${NOMAD_IP_http}"
         UseTracingExporter = "console1"
         UseMetricsExporter = "console1"
         UseLogExporter = "console1"
@@ -40,7 +36,7 @@ job "kitchen-api" {
 
       resources {
         cpu    = 100
-        memory = 128
+        memory = 200
       }
     }
   }

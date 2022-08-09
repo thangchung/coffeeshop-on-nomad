@@ -8,6 +8,8 @@ job "counter-api" {
     
     network {
       mode = "bridge"
+
+      port "http" {}
     }
 
     service {
@@ -15,26 +17,7 @@ job "counter-api" {
       port = "5002"
 
       connect {
-        sidecar_service {
-          proxy {
-            // config {
-            //   local_connect_timeout_ms = 100
-            // }
-
-            upstreams {
-              destination_name = "product-api-grpc"
-              local_bind_port  = 15001
-            }
-            upstreams {
-              destination_name = "postgres-db"
-              local_bind_port  = 5432
-            }
-            upstreams {
-              destination_name = "rabbitmq"
-              local_bind_port  = 5672
-            }
-          }
-        }
+        sidecar_service { }
       }
 
       tags = [
@@ -57,9 +40,9 @@ job "counter-api" {
       env {
         ASPNETCORE_ENVIRONMENT = "Development"
         RestPort = "5002"
-        ProductUri = "http://${NOMAD_UPSTREAM_ADDR_product_api_grpc}"
-        ConnectionStrings__counterdb = "Server=${NOMAD_UPSTREAM_IP_postgres_db};Port=5432;Database=postgres;User Id=postgres;Password=P@ssw0rd"
-        RabbitMqUrl = "${NOMAD_UPSTREAM_IP_rabbitmq}"
+        ProductUri = "http://${NOMAD_IP_http}:15001"
+        ConnectionStrings__counterdb = "Server=${NOMAD_IP_http};Port=5432;Database=postgres;User Id=postgres;Password=P@ssw0rd"
+        RabbitMqUrl = "${NOMAD_IP_http}"
         UseTracingExporter = "console1"
         UseMetricsExporter = "console1"
         UseLogExporter = "console1"
@@ -67,8 +50,8 @@ job "counter-api" {
       }
 
       resources {
-        cpu    = 120
-        memory = 150
+        cpu    = 150
+        memory = 200
       }
     }
   }
