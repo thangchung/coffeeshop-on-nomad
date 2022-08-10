@@ -32,10 +32,14 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 ${SUDO} rm -rf ./data
 mkdir -p log
 
+IP_ADDRESS=$(hostname -I | xargs | awk '{print $1}')
+
 echo "Starting consul..."
-${SUDO} consul agent -dev -client 0.0.0.0 -ui \
+consul agent -dev \
   -config-file ./etc/consul.hcl \
   -bootstrap-expect 1 \
+  -client '0.0.0.0' \
+  -bind "${IP_ADDRESS}" \
   &>log/consul.log &
 
 echo "Waiting for consul..."
@@ -44,10 +48,10 @@ while ! consul members &>/dev/null; do
 done
 
 echo "Starting nomad..."
-${SUDO} nomad agent -dev-connect \
+${SUDO} nomad agent -dev \
   -config ./etc/nomad.hcl \
-  -data-dir "${PWD}/data/nomad" \
-  -consul-address "127.0.0.1:8500" \
+  -network-interface eth0 \
+  -consul-address "${IP_ADDRESS}:8500" \
   &>log/nomad.log &
 
 echo "Waiting for nomad..."

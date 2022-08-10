@@ -1,4 +1,5 @@
-log_level            = "INFO"
+bind_addr            = "0.0.0.0"
+log_level            = "DEBUG"
 disable_update_check = true
 
 # these settings allow Nomad to automatically find its peers through Consul
@@ -16,7 +17,15 @@ server {
 }
 
 client {
+  enabled          = true
   options = {
     "driver.blacklist" = "java"
   }
 }
+
+// plugin "docker" {
+//   config {
+//     allow_privileged = true
+//     allow_runtimes = ["runc", "sysbox-runc"]
+//   }
+// }

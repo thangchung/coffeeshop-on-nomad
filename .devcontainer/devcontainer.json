@@ -15,12 +15,9 @@
 	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [ "4646:4646", "8500:8500", "8080:80", "8443:443", "8888:8080", "5432:5432", "15672:15672" ],
-	"forwardPorts": [
-		"4646:4646"
-	]
 	
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "uname -a",
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	// "remoteUser": "vscode"
+	"remoteUser": "vscode"
 }

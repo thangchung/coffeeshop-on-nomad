@@ -12,10 +12,6 @@ job "traefik" {
         static = 443
       }
 
-      port "metrics" {
-        static = 8082
-      }
-
       port "grpc" {
         static = 15001
       }
@@ -50,7 +46,7 @@ job "traefik" {
 
       config {
         image        = "traefik:v2.8.1"
-        ports        = ["web", "websecure", "metrics", "grpc"]
+        ports        = ["web", "websecure", "grpc"]
         network_mode = "host"
 
         volumes = [
@@ -65,8 +61,6 @@ entryPoints:
     address: ":80"
   websecure:
     address: ":443"
-  metrics:
-    address: ":8082"
   grpc:
     address: ":15001"
 
@@ -80,6 +74,9 @@ ping:
 log:
   level: "DEBUG"
 
+serversTransport:
+  insecureSkipVerify: true
+  
 providers:
   consulCatalog:
     prefix: "traefik"

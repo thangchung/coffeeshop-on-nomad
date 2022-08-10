@@ -7,12 +7,15 @@ job "barista-api" {
     network {
       mode = "bridge"
 
-      port "http" {}
+      port "http" { 
+        to = 5003 
+      }
     }
 
     service {
       name = "barista-api"
       port = "5003"
+      address = "${attr.unique.network.ip-address}"
     }
 
     task "barista-api" {
@@ -21,13 +24,14 @@ job "barista-api" {
       config {
         image = "ghcr.io/thangchung/coffeeshop-on-nomad/barista-service:0.1.1"
         // force_pull = true
+        ports = [ "http" ]
       }
 
       env {
         ASPNETCORE_ENVIRONMENT = "Development"
         RestPort = "5003"
-        ConnectionStrings__baristadb = "Server=${NOMAD_IP_http};Port=5432;Database=postgres;User Id=postgres;Password=P@ssw0rd"
-        RabbitMqUrl = "${NOMAD_IP_http}"
+        ConnectionStrings__baristadb = "Server=${attr.unique.network.ip-address};Port=5432;Database=postgres;User Id=postgres;Password=P@ssw0rd"
+        RabbitMqUrl = "${attr.unique.network.ip-address}"
         UseTracingExporter = "console1"
         UseMetricsExporter = "console1"
         UseLogExporter = "console1"

@@ -5,7 +5,7 @@ job "product-api" {
   datacenters = ["dc1"]
 
   group "svc" {
-    count = 2
+    count = 1
     
     network {
       mode = "bridge"
@@ -14,7 +14,7 @@ job "product-api" {
         to = 5001
       }
 
-      port "grpc" {
+      port "product-grpc" {
         to = 15001
       }
     }
@@ -30,17 +30,20 @@ job "product-api" {
       tags = [
         "traefik.enable=true",
         "traefik.consulcatalog.connect=true",
-        "traefik.http.routers.http.rule=PathPrefix(`/product-api`)",
-        "traefik.http.routers.http.middlewares=http-stripprefix",
-        "traefik.http.middlewares.http-stripprefix.stripprefix.prefixes=/product-api",
+        "traefik.port=5001",
+        "traefik.http.routers.productapi.entryPoints=web",
+        "traefik.http.routers.productapi.rule=Host(`nomadvn.eastus.cloudapp.azure.com`) && PathPrefix(`/product-api`)",
+        "traefik.http.routers.productapi.middlewares=productapi-stripprefix",
+        "traefik.http.middlewares.productapi-stripprefix.stripprefix.prefixes=/product-api",
       ]
     }
 
     service {
       name = "product-api-grpc"
-      port = "grpc"
+      port = "product-grpc"
 
       tags = [
+        "traefik.port=15001",
         "traefik.tcp.routers.grpc.rule=HostSNI(`*`)",
         "traefik.tcp.routers.grpc.entrypoints=grpc",
         "traefik.tcp.services.product-api-grpc.loadbalancer.server.port=15001",
@@ -54,7 +57,7 @@ job "product-api" {
       config {
         image = "ghcr.io/thangchung/coffeeshop-on-nomad/product-service:0.1.1"
         // force_pull = true
-        ports = ["http", "grpc"]
+        ports = ["http", "product-grpc"]
       }
 
       env {
