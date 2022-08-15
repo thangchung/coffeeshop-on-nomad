@@ -1,5 +1,4 @@
 ﻿using CoffeeShop.Contracts;
-using CoffeeShop.Protobuf.Item.V1;
 
 namespace CounterService.Domain;
 

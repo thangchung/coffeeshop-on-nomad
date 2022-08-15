@@ -17,7 +17,6 @@ job "rabbitmq" {
     service {
       name = "rabbitmq"
       port = "broker"
-      address = "${attr.unique.network.ip-address}"
 
       connect {
         sidecar_service { }

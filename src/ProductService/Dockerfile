@@ -11,6 +11,7 @@ COPY ["src/ProductService/ProductService.csproj", "src/ProductService/"]
 COPY ["src/Libs/N8T.Core/N8T.Core.csproj", "src/Libs/N8T.Core/"]
 COPY ["src/Libs/N8T.Infrastructure.EfCore/N8T.Infrastructure.EfCore.csproj", "src/Libs/N8T.Infrastructure.EfCore/"]
 COPY ["src/Libs/N8T.Infrastructure/N8T.Infrastructure.csproj", "src/Libs/N8T.Infrastructure/"]
+COPY ["src/Libs/CoffeeShop.Contracts/CoffeeShop.Contracts.csproj", "src/Libs/CoffeeShop.Contracts/"]
 RUN dotnet restore "src/ProductService/ProductService.csproj"
 COPY . .
 WORKDIR "/src/src/ProductService"

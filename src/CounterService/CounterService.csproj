@@ -17,19 +17,19 @@
 		</PackageReference>
 	</ItemGroup>
 	
-	<ItemGroup>
-		<PackageReference Include="Grpc.AspNetCore" Version="2.47.0" />
-		<PackageReference Include="Grpc.Tools" Version="2.48.0-pre1">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="7.0.0-preview.6.22330.3" />
-	</ItemGroup>
+<!--	<ItemGroup>-->
+<!--		<PackageReference Include="Grpc.AspNetCore" Version="2.47.0" />-->
+<!--		<PackageReference Include="Grpc.Tools" Version="2.48.0-pre1">-->
+<!--			<PrivateAssets>all</PrivateAssets>-->
+<!--			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>-->
+<!--		</PackageReference>-->
+<!--		<PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="7.0.0-preview.6.22330.3" />-->
+<!--	</ItemGroup>-->
 
-	<ItemGroup>
-		<Protobuf Include="..\Schema\proto\coffeeshop\item\v1\item.proto" Link="Infrastructure\Protobuf\item.proto" AdditionalImportDirs="..\Schema\proto\" />
-		<Protobuf Include="..\Schema\proto\coffeeshop\item\v1\item_api.proto" Link="Infrastructure\Protobuf\item_api.proto" AdditionalImportDirs="..\Schema\proto\" GrpcServices="Client" />
-	</ItemGroup>
+<!--	<ItemGroup>-->
+<!--		<Protobuf Include="..\Schema\proto\coffeeshop\item\v1\item.proto" Link="Infrastructure\Protobuf\item.proto" AdditionalImportDirs="..\Schema\proto\" />-->
+<!--		<Protobuf Include="..\Schema\proto\coffeeshop\item\v1\item_api.proto" Link="Infrastructure\Protobuf\item_api.proto" AdditionalImportDirs="..\Schema\proto\" GrpcServices="Client" />-->
+<!--	</ItemGroup>-->
 
   <ItemGroup>
     <ProjectReference Include="..\Libs\CoffeeShop.Contracts\CoffeeShop.Contracts.csproj" />

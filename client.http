@@ -1,15 +1,16 @@
 @host = http://localhost:8080
+# @host = http://nomadvn.eastus.cloudapp.azure.com
 
 ###
 GET {{host}}/product-api/v1/item/ping HTTP/1.1
 content-type: application/json
 
 ###
-GET {{host}}/product-api/v1/item-types HTTP/1.1
+GET {{host}}/product-api/v1/api/item-types HTTP/1.1
 content-type: application/json
 
 ###
-GET {{host}}/product-api/v1/items-by-types/1,2,3 HTTP/1.1
+GET {{host}}/product-api/v1/api/items-by-types/1,2,3 HTTP/1.1
 content-type: application/json
 
 ###

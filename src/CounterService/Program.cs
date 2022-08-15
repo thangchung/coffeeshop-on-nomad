@@ -55,21 +55,22 @@ builder.Services.AddMassTransit(x =>
     });
 });
 
-builder.Services.AddGrpcClient<CoffeeShop.Protobuf.Item.V1.ItemApi.ItemApiClient>("ItemClient", o =>
-{
-    o.Address = new Uri(builder.Configuration.GetValue<string>("ProductUri")!);
-}).ConfigureChannel(chan =>
-{
-    var httpHandler = new HttpClientHandler();
-    
-    // Return `true` to allow certificates that are untrusted/invalid
-    httpHandler.ServerCertificateCustomValidationCallback =
-        HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+// builder.Services.AddGrpcClient<CoffeeShop.Protobuf.Item.V1.ItemApi.ItemApiClient>("ItemClient", o =>
+// {
+//     o.Address = new Uri(builder.Configuration.GetValue<string>("ProductUri")!);
+// }).ConfigureChannel(chan =>
+// {
+//     var httpHandler = new HttpClientHandler();
+//     
+//     // Return `true` to allow certificates that are untrusted/invalid
+//     httpHandler.ServerCertificateCustomValidationCallback =
+//         HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+//
+//     chan.HttpHandler = httpHandler;
+// });
 
-    chan.HttpHandler = httpHandler;
-});
-
-builder.Services.AddScoped<IItemGateway, ItemGateway>();
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<IItemGateway, ItemRestGateway>();
 
 var app = builder.Build();
 

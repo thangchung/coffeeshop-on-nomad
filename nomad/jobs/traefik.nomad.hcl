@@ -11,10 +11,6 @@ job "traefik" {
       port "websecure" {
         static = 443
       }
-
-      port "grpc" {
-        static = 15001
-      }
     }
 
     service {
@@ -30,23 +26,12 @@ job "traefik" {
       }
     }
 
-    service {
-      name = "traefik-grpc"
-      port = "grpc"
-
-      check {
-        type     = "tcp"
-        interval = "10s"
-        timeout  = "5s"
-      }
-    }
-
     task "traefik" {
       driver = "docker"
 
       config {
         image        = "traefik:v2.8.1"
-        ports        = ["web", "websecure", "grpc"]
+        ports        = ["web", "websecure"]
         network_mode = "host"
 
         volumes = [
@@ -61,8 +46,6 @@ entryPoints:
     address: ":80"
   websecure:
     address: ":443"
-  grpc:
-    address: ":15001"
 
 api:
   dashboard: true

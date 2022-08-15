@@ -1,23 +1,24 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.245.0/containers/ubuntu
 {
-	"name": "Debian Box",
-	"service": "app",
-	"workspaceFolder": "/workspace",
-	"dockerComposeFile": "docker-compose.yml",
-	"remoteEnv": {
-		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+	"name": "Ubuntu",
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick an Ubuntu version: jammy / ubuntu-22.04, focal / ubuntu-20.04, bionic /ubuntu-18.04
+		// Use ubuntu-22.04 or ubuntu-18.04 on local arm64/Apple Silicon.
+		"args": { "VARIANT": "ubuntu-20.04" }
 	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"ms-azuretools.vscode-docker"
-			]
-		}
-	},
+
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [ "4646:4646", "8500:8500", "8080:80", "8443:443", "8888:8080", "5432:5432", "15672:15672" ],
-	
+	// "forwardPorts": [],
+
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "uname -a",
+
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "vscode"
+	"remoteUser": "vscode",
+	"features": {
+		"docker-in-docker": "20.10",
+		"dotnet": "latest"
+	}
 }

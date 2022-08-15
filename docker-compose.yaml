@@ -21,34 +21,31 @@ services:
       - coffeeshop-network
 
   product-service:
-    image: ghcr.io/thangchung/coffeeshop-on-nomad/product-service:0.1.1
+    image: ghcr.io/thangchung/coffeeshop-on-nomad/product-service:0.1.2
     build:
       context: .
       dockerfile: ./src/ProductService/Dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development 
-      - RestPort=5001
-      - GrpcPort=15001
+      - ASPNETCORE_ENVIRONMENT=Development
       - UseTracingExporter=console1
       - UseMetricsExporter=console1
       - UseLogExporter=console1
       - AspNetCoreInstrumentation__RecordException=true
     ports:
       - "5001:5001"
-      - "15001:15001"
     restart: always
     networks:
       - coffeeshop-network
   
   counter-service:
-    image: ghcr.io/thangchung/coffeeshop-on-nomad/counter-service:0.1.1
+    image: ghcr.io/thangchung/coffeeshop-on-nomad/counter-service:0.1.2
     build:
       context: .
       dockerfile: ./src/CounterService/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__counterdb=Server=postgresql;Port=5432;Database=postgres;User Id=postgres;Password=P@ssw0rd
-      - ProductUri=http://product-service:15001
+      - ProductApiUri=http://product-service:5001
       - RabbitMqUrl=rabbitmq
       - UseTracingExporter=console1
       - UseMetricsExporter=console1
@@ -65,7 +62,7 @@ services:
       - coffeeshop-network
 
   barista-service:
-    image: ghcr.io/thangchung/coffeeshop-on-nomad/barista-service:0.1.1
+    image: ghcr.io/thangchung/coffeeshop-on-nomad/barista-service:0.1.2
     build:
       context: .
       dockerfile: ./src/BaristaService/Dockerfile
@@ -87,7 +84,7 @@ services:
       - coffeeshop-network
 
   kitchen-service:
-    image: ghcr.io/thangchung/coffeeshop-on-nomad/kitchen-service:0.1.1
+    image: ghcr.io/thangchung/coffeeshop-on-nomad/kitchen-service:0.1.2
     build:
       context: .
       dockerfile: ./src/KitchenService/Dockerfile
@@ -109,7 +106,7 @@ services:
       - coffeeshop-network
 
   reverse-proxy:
-    image: ghcr.io/thangchung/coffeeshop-on-nomad/reverse-proxy:0.1.1
+    image: ghcr.io/thangchung/coffeeshop-on-nomad/reverse-proxy:0.1.2
     build:
       context: .
       dockerfile: ./src/ReverseProxy/Dockerfile
@@ -133,7 +130,7 @@ services:
       - coffeeshop-network
 
   datagen-app:
-    image: ghcr.io/thangchung/coffeeshop-on-nomad/datagen-app:0.1.1
+    image: ghcr.io/thangchung/coffeeshop-on-nomad/datagen-app:0.1.2
     build:
       context: .
       dockerfile: ./src/DataGen/Dockerfile
