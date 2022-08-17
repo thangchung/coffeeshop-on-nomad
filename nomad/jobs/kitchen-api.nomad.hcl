@@ -22,7 +22,7 @@ job "kitchen-api" {
       driver = "docker"
 
       config {
-        image = "ghcr.io/thangchung/coffeeshop-on-nomad/kitchen-service:0.1.2"
+        image = "ghcr.io/thangchung/coffeeshop-on-nomad/kitchen-service:0.1.3"
         ports = [ "http" ]
         // force_pull = true
       }

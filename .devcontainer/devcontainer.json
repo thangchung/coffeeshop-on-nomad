@@ -9,6 +9,12 @@
 		"args": { "VARIANT": "ubuntu-22.04" }
 	},
 
+	"extensions": [
+		"mutantdino.resourcemonitor",
+		"humao.rest-client",
+		"hashicorp.hcl"
+	  ],
+
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 

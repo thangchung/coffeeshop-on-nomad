@@ -143,14 +143,5 @@ services:
     networks:
       - coffeeshop-network
 
-  # plantuml-server:
-  #   image: "plantuml/plantuml-server:jetty"
-  #   environment:
-  #     PLANTUML_LIMIT_SIZE: 24384
-  #   ports:
-  #     - 8080:8080
-  #   networks:
-  #     - coffeeshop-network
-
 networks:
   coffeeshop-network:

@@ -22,7 +22,7 @@ job "barista-api" {
       driver = "docker"
 
       config {
-        image = "ghcr.io/thangchung/coffeeshop-on-nomad/barista-service:0.1.2"
+        image = "ghcr.io/thangchung/coffeeshop-on-nomad/barista-service:0.1.3"
         // force_pull = true
         ports = [ "http" ]
       }

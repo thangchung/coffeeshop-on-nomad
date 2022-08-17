@@ -64,6 +64,45 @@ Then, waiting until all jobs are available. All the endpoints below:
 
 Using [client.http](client.http) to explore the application!
 
+# devcontainer setup
+
+F1 in vscode and choose `Remote-Containers: Open Folder in Container...`, then waiting until it build sucessful
+
+```bash
+# check linux version
+> cat /etc/os-release
+# build all images of application
+> docker compose build 
+```
+
+Open a new tab
+
+```bash
+> cd local/
+$ sudo chmod +x core-libs.sh start.sh
+$ sudo ./core-libs.sh
+# nomad cannot run on wsl2 image, then we need to work-around
+$ sudo mkdir -p /lib/modules/$(uname -r)/
+> echo '_/bridge.ko' | sudo tee -a /lib/modules/$(uname -r)/modules.builtin
+# Start nomad and consul
+> ./start.sh
+```
+
+Open another new tab
+
+```bash
+> cd nomad/jobs
+> nomad job run traefik.nomad.hcl
+> nomad job run postgresdb.nomad.hcl
+> nomad job run rabbitmq.nomad.hcl
+> nomad job run product-api.nomad.hcl
+> nomad job run counter-api.nomad.hcl
+> nomad job run barista-api.nomad.hcl
+> nomad job run kitchen-api.nomad.hcl
+```
+
+Finally, you can play around using [client.http](client.http) to explore the application!
+
 # References
 
 - Traefix dashboad: https://traefik.io/blog/traefik-proxy-fully-integrates-with-hashicorp-nomad/
