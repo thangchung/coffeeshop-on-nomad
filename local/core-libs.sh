@@ -16,7 +16,7 @@ echo "Installing cni plugins..."
 curl -L -o cni-plugins.tgz "https://github.com/containernetworking/plugins/releases/download/v1.1.1/cni-plugins-linux-$( [ $(uname -m) = aarch64 ] && echo arm64 || echo amd64)"-v1.1.1.tgz
 sudo mkdir -p /opt/cni/bin
 sudo tar -C /opt/cni/bin -xzf cni-plugins.tgz
-sudo rm cni-plugins.tgz
+sudo rm ./cni-plugins.tgz
 
 echo "Installing Consul..."
 sudo apt-get install consul=1.12.2-1 -y

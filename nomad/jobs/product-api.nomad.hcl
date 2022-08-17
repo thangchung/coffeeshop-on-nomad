@@ -34,9 +34,22 @@ job "product-api" {
     task "product-api" {
       driver = "docker"
 
+      // artifact {
+      //   source = "git::https://github.com/thangchung/coffeeshop-on-nomad"
+      //   destination = "local/repo"
+      // }
+
+      // config {
+      //   command = "bash"
+      //   args = [
+      //     "-c",
+      //     "cd local/repo/ && export DOTNET_ROOT=/usr/share/dotnet && export PATH=$PATH:/usr/share/dotnet && dotnet build ./src/ProductService/ProductService.csproj && ./src/ProductService/bin/Debug/net7.0/ProductService"
+      //   ]
+      // }
+
       config {
-        image = "ghcr.io/thangchung/coffeeshop-on-nomad/product-service:0.1.2"
-        force_pull = true
+        image = "ghcr.io/thangchung/coffeeshop-on-nomad/product-service:0.1.3"
+        // force_pull = true
         ports = ["http"]
       }
 

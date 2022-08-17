@@ -1,24 +1,24 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM mcr.microsoft.com/dotnet/nightly/aspnet:7.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:7.0-jammy AS base
 WORKDIR /app
 EXPOSE 5001
 EXPOSE 15001
 
-FROM mcr.microsoft.com/dotnet/nightly/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:7.0-jammy AS build
 WORKDIR /src
 COPY ["src/ProductService/ProductService.csproj", "src/ProductService/"]
 COPY ["src/Libs/N8T.Core/N8T.Core.csproj", "src/Libs/N8T.Core/"]
 COPY ["src/Libs/N8T.Infrastructure.EfCore/N8T.Infrastructure.EfCore.csproj", "src/Libs/N8T.Infrastructure.EfCore/"]
 COPY ["src/Libs/N8T.Infrastructure/N8T.Infrastructure.csproj", "src/Libs/N8T.Infrastructure/"]
 COPY ["src/Libs/CoffeeShop.Contracts/CoffeeShop.Contracts.csproj", "src/Libs/CoffeeShop.Contracts/"]
-RUN dotnet restore "src/ProductService/ProductService.csproj"
+RUN dotnet restore "src/ProductService/ProductService.csproj" --use-current-runtime
 COPY . .
 WORKDIR "/src/src/ProductService"
-RUN dotnet build "ProductService.csproj" -c Release -o /app/build
+RUN dotnet build "ProductService.csproj" -c Release -o /app/build --use-current-runtime --self-contained false --no-restore
 
 FROM build AS publish
-RUN dotnet publish "ProductService.csproj" -c Release -o /app/publish
+RUN dotnet publish "ProductService.csproj" -c Release -o /app/publish --use-current-runtime --self-contained false --no-restore
 
 FROM base AS final
 WORKDIR /app

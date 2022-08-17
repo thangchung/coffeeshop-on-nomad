@@ -21,7 +21,7 @@ services:
       - coffeeshop-network
 
   product-service:
-    image: ghcr.io/thangchung/coffeeshop-on-nomad/product-service:0.1.2
+    image: ghcr.io/thangchung/coffeeshop-on-nomad/product-service:0.1.3
     build:
       context: .
       dockerfile: ./src/ProductService/Dockerfile
@@ -38,7 +38,7 @@ services:
       - coffeeshop-network
   
   counter-service:
-    image: ghcr.io/thangchung/coffeeshop-on-nomad/counter-service:0.1.2
+    image: ghcr.io/thangchung/coffeeshop-on-nomad/counter-service:0.1.3
     build:
       context: .
       dockerfile: ./src/CounterService/Dockerfile
@@ -62,7 +62,7 @@ services:
       - coffeeshop-network
 
   barista-service:
-    image: ghcr.io/thangchung/coffeeshop-on-nomad/barista-service:0.1.2
+    image: ghcr.io/thangchung/coffeeshop-on-nomad/barista-service:0.1.3
     build:
       context: .
       dockerfile: ./src/BaristaService/Dockerfile
@@ -84,7 +84,7 @@ services:
       - coffeeshop-network
 
   kitchen-service:
-    image: ghcr.io/thangchung/coffeeshop-on-nomad/kitchen-service:0.1.2
+    image: ghcr.io/thangchung/coffeeshop-on-nomad/kitchen-service:0.1.3
     build:
       context: .
       dockerfile: ./src/KitchenService/Dockerfile
@@ -106,7 +106,7 @@ services:
       - coffeeshop-network
 
   reverse-proxy:
-    image: ghcr.io/thangchung/coffeeshop-on-nomad/reverse-proxy:0.1.2
+    image: ghcr.io/thangchung/coffeeshop-on-nomad/reverse-proxy:0.1.3
     build:
       context: .
       dockerfile: ./src/ReverseProxy/Dockerfile
@@ -130,7 +130,7 @@ services:
       - coffeeshop-network
 
   datagen-app:
-    image: ghcr.io/thangchung/coffeeshop-on-nomad/datagen-app:0.1.2
+    image: ghcr.io/thangchung/coffeeshop-on-nomad/datagen-app:0.1.3
     build:
       context: .
       dockerfile: ./src/DataGen/Dockerfile
