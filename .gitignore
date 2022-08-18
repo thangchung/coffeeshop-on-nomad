@@ -353,3 +353,4 @@ out/
 **/.vagrant/
 .idea/
 local/data/
+.env

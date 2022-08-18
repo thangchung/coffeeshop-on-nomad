@@ -1,82 +1,79 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\packages.props" />
+    <Import Project="..\packages.props" />
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-  </PropertyGroup>
-	
-  <ItemGroup>
-    <!--https://github.com/dotnet/aspnetcore/issues/19481-->
-    <!--https://docs.microsoft.com/en-us/aspnet/core/fundamentals/metapackage-app-->
-    <!--https://docs.microsoft.com/en-us/aspnet/core/fundamentals/target-aspnetcore-->
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.8" />
-    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.8" />
-    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <!--https://github.com/dotnet/aspnetcore/issues/19481-->
+        <!--https://docs.microsoft.com/en-us/aspnet/core/fundamentals/metapackage-app-->
+        <!--https://docs.microsoft.com/en-us/aspnet/core/fundamentals/target-aspnetcore-->
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Dapr.AspNetCore" Version="1.8.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta1" />
-    <PackageReference Include="Polly" Version="7.2.3" />
-    <PackageReference Include="Scrutor" Version="4.2.0" />
-    <PackageReference Include="Spectre.Console" Version="0.44.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-    <PackageReference Include="RestEase" Version="1.5.7" />
-    <PackageReference Include="RestEase.HttpClientFactory" Version="1.5.7" />
-    <PackageReference Include="TimeZoneConverter" Version="5.0.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="6.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.8" />
+        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.8" />
+        <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MassTransit" Version="8.0.6" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.6" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Dapr.AspNetCore" Version="1.8.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta1" />
+        <PackageReference Include="Polly" Version="7.2.3" />
+        <PackageReference Include="Scrutor" Version="4.2.0" />
+        <PackageReference Include="Spectre.Console" Version="0.44.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+        <PackageReference Include="RestEase" Version="1.5.7" />
+        <PackageReference Include="RestEase.HttpClientFactory" Version="1.5.7" />
+        <PackageReference Include="TimeZoneConverter" Version="5.0.0" />
+    </ItemGroup>
 
-<!--  <ItemGroup>-->
-<!--    <PackageReference Include="Confluent.Kafka" Version="1.8.2" />-->
-<!--    <PackageReference Include="Confluent.SchemaRegistry.Serdes.Avro" Version="1.8.2" />-->
-<!--  </ItemGroup>-->
+    <ItemGroup>
+        <PackageReference Include="MassTransit" Version="8.0.6" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.6" />
+    </ItemGroup>
 
-  <ItemGroup>
-	  <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.4.0-alpha.1" />
-	  <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.0.0-rc9.5" />
-	  <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.0.0-rc9.5" />
-	  <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.0.0-rc9.5" />
-	  <PackageReference Include="OpenTelemetry.Instrumentation.MassTransit" Version="1.0.0-beta.3" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.4.0-alpha.1" />
+        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol.Logs" Version="1.4.0-alpha.1" />
+        <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.4.0-alpha.1" />
+        <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.0.0-rc9.5" />
+        <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.0.0-rc9.5" />
+        <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.0.0-rc9.5" />
+        <PackageReference Include="OpenTelemetry.Instrumentation.MassTransit" Version="1.0.0-beta.3" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Serilog" Version="2.11.1-dev-01397" />
-    <PackageReference Include="Serilog.AspNetCore" Version="6.0.0-dev-00265" />
-    <PackageReference Include="Serilog.Expressions" Version="3.4.0" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.1-dev-10301" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.2-dev-00890" />
-    <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="9.0.0-beta7" />
-    <PackageReference Include="Serilog.Sinks.File" Version="5.0.1-dev-00947" />
-    <PackageReference Include="Serilog.Sinks.Seq" Version="5.1.2-dev-00225" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Serilog" Version="2.11.1-dev-01397" />
+        <PackageReference Include="Serilog.AspNetCore" Version="6.0.0-dev-00265" />
+        <PackageReference Include="Serilog.Expressions" Version="3.4.0" />
+        <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.1-dev-10301" />
+        <PackageReference Include="Serilog.Sinks.Console" Version="4.0.2-dev-00890" />
+        <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="9.0.0-beta7" />
+        <PackageReference Include="Serilog.Sinks.File" Version="5.0.1-dev-00947" />
+        <PackageReference Include="Serilog.Sinks.Seq" Version="5.1.2-dev-00225" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\N8T.Core\N8T.Core.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\N8T.Core\N8T.Core.csproj" />
+    </ItemGroup>
 
 </Project>

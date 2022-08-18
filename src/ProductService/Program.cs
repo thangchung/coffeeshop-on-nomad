@@ -12,10 +12,7 @@ builder.WebHost.AddOTelLogs();
 
 builder.WebHost.ConfigureKestrel(webBuilder =>
 {
-    // webBuilder.Limits.MinRequestBodyDataRate = null;
-    webBuilder.Listen(IPAddress.Any, builder.Configuration.GetValue<int>("RestPort", 5001)); // REST
-    // webBuilder.Listen(IPAddress.Any, builder.Configuration.GetValue<int>("GrpcPort", 15001), 
-    //     listenOptions => { listenOptions.Protocols = HttpProtocols.Http2; }); // gRPC
+    webBuilder.Listen(IPAddress.Any, builder.Configuration.GetValue("RestPort", 5001)); // REST
 });
 
 builder.Services
@@ -23,14 +20,10 @@ builder.Services
     .AddCustomMediatR(new[] { typeof(Item) })
     .AddCustomValidators(new[] { typeof(Item) });
 
-// builder.Services.AddGrpc().AddJsonTranscoding();
-
 builder.Services.AddOTelTracing(builder.Configuration);
 builder.Services.AddOTelMetrics(builder.Configuration);
 
 var app = builder.Build();
-
-// app.MapGrpcService<ItemService>();
 
 _ = app.MapItemTypesQueryApiRoutes()
     .MapItemsByIdsQueryApiRoutes();

@@ -1,6 +1,11 @@
 job "kitchen-api" {
   datacenters = ["dc1"]
 
+  constraint {
+    attribute = "${attr.kernel.name}"
+    value     = "linux"
+  }
+
   group "kitchen-api" {
     count = 1
     

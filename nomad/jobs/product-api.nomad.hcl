@@ -1,6 +1,11 @@
 job "product-api" {
   datacenters = ["dc1"]
 
+  constraint {
+    attribute = "${attr.kernel.name}"
+    value     = "linux"
+  }
+
   group "svc" {
     count = 1
     

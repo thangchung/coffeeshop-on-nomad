@@ -1,6 +1,11 @@
 job "barista-api" {
   datacenters = ["dc1"]
 
+  constraint {
+    attribute = "${attr.kernel.name}"
+    value     = "linux"
+  }
+
   group "barista-api" {
     count = 1
     
