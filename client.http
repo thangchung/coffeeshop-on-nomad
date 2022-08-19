@@ -1,5 +1,5 @@
-# @host = http://localhost:8080
-@host = http://nomadvn.eastus.cloudapp.azure.com
+@host = http://localhost:8080
+# @host = http://nomadvn.eastus.cloudapp.azure.com
 
 ###
 GET {{host}}/product-api/v1/api/item-types HTTP/1.1
@@ -19,6 +19,9 @@ content-type: application/json
   "location": 0,
   "loyaltyMemberId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
   "baristaItems": [
+    {
+      "itemType": {{$randomInt 0 5}}
+    },
     {
       "itemType": {{$randomInt 0 5}}
     }

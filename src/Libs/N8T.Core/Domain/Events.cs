@@ -17,7 +17,7 @@ namespace N8T.Core.Domain
 
     public abstract class EventBase : IDomainEvent
     {
-        public string EventType { get { return GetType().FullName; } }
+        public string EventType => GetType().FullName;
         public DateTime CreatedAt { get; } = DateTime.UtcNow;
         public string CorrelationId { get; init; }
         public IDictionary<string, object> MetaData { get; } = new Dictionary<string, object>();

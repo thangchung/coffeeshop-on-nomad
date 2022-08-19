@@ -65,7 +65,6 @@ public static class Extensions
                     .AddSource("MassTransit") // https://github.com/open-telemetry/opentelemetry-dotnet-contrib/issues/326
                     .AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation()
-                    .AddSqlClientInstrumentation()
                     .AddEntityFrameworkCoreInstrumentation()
                     .AddConsoleExporter());
                 // For options which can be bound from IConfiguration.
@@ -83,7 +82,6 @@ public static class Extensions
                         .AddService(config.GetValue<string>("Otlp:ServiceName")))
                     .AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation()
-                    .AddSqlClientInstrumentation()
                     .AddEntityFrameworkCoreInstrumentation(b => b.SetDbStatementForText = true)
                     .AddOtlpExporter(otlpOptions =>
                     {

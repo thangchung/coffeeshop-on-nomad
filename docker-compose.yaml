@@ -134,19 +134,19 @@ services:
     networks:
       - coffeeshop-network
 
-  datagen-app:
-    image: ghcr.io/thangchung/coffeeshop-on-nomad/datagen-app:${IMAGE_TAG:-0.1.3}
-    build:
-      context: .
-      dockerfile: ./src/DataGen/Dockerfile
-    environment:
-      - CoffeeShopApi=http://reverse-proxy:8080
-      - SubmitOrderRoute=/counter-api/v1/api/orders
-    depends_on:
-      - reverse-proxy
-    restart: always
-    networks:
-      - coffeeshop-network
+  # datagen-app:
+  #   image: ghcr.io/thangchung/coffeeshop-on-nomad/datagen-app:${IMAGE_TAG:-0.1.3}
+  #   build:
+  #     context: .
+  #     dockerfile: ./src/DataGen/Dockerfile
+  #   environment:
+  #     - CoffeeShopApi=http://reverse-proxy:8080
+  #     - SubmitOrderRoute=/counter-api/v1/api/orders
+  #   depends_on:
+  #     - reverse-proxy
+  #   restart: always
+  #   networks:
+  #     - coffeeshop-network
 
   # Jaeger
   jaeger-all-in-one:
@@ -192,6 +192,15 @@ services:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
+    networks:
+      - coffeeshop-network
+
+  elk:
+    image: sebp/elk:latest
+    ports:
+      - "5601:5601"
+      - "9200:9200"
+      - "5044:5044"
     networks:
       - coffeeshop-network
 
