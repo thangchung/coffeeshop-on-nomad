@@ -38,6 +38,7 @@ public static class Extensions
                         });
                     });
                     break;
+                case "":
                 case "none":
                     break;
             }
@@ -60,10 +61,12 @@ public static class Extensions
         switch (tracingExporter)
         {
             case "console":
-                services.AddOpenTelemetryTracing((builder) => builder
+                services.AddOpenTelemetryTracing(builder => builder
+                    .AddSource("MassTransit") // https://github.com/open-telemetry/opentelemetry-dotnet-contrib/issues/326
                     .AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation()
-                    .AddMassTransitInstrumentation()
+                    .AddSqlClientInstrumentation()
+                    .AddEntityFrameworkCoreInstrumentation()
                     .AddConsoleExporter());
                 // For options which can be bound from IConfiguration.
                 services.Configure<AspNetCoreInstrumentationOptions>(config.GetSection("AspNetCoreInstrumentation"));
@@ -74,16 +77,20 @@ public static class Extensions
                 });
                 break;
             case "otlp":
-                services.AddOpenTelemetryTracing((builder) => builder
+                services.AddOpenTelemetryTracing(builder => builder
+                    .AddSource("MassTransit") // https://github.com/open-telemetry/opentelemetry-dotnet-contrib/issues/326
                     .SetResourceBuilder(ResourceBuilder.CreateDefault()
                         .AddService(config.GetValue<string>("Otlp:ServiceName")))
                     .AddAspNetCoreInstrumentation()
                     .AddHttpClientInstrumentation()
+                    .AddSqlClientInstrumentation()
+                    .AddEntityFrameworkCoreInstrumentation(b => b.SetDbStatementForText = true)
                     .AddOtlpExporter(otlpOptions =>
                     {
                         otlpOptions.Endpoint = new Uri(config.GetValue<string>("Otlp:Endpoint"));
                     }));
                 break;
+            case "":
             case "none":
                 break;
         }
@@ -116,6 +123,7 @@ public static class Extensions
                 case "otlp":
                     bd.AddOtlpExporter();
                     break;
+                case "":
                 case "none":
                     break;
             }

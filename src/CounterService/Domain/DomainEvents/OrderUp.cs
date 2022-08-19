@@ -1,7 +1,7 @@
 ﻿using CoffeeShop.Contracts;
 using N8T.Core.Domain;
 
-namespace CoffeeShop.Domain.DomainEvents;
+namespace CounterService.Domain.DomainEvents;
 
 public class OrderUp : EventBase
 {
@@ -24,11 +24,6 @@ public class OrderUp : EventBase
         TimeIn = DateTime.UtcNow;
         MadeBy = madeBy;
         TimeUp = timeUp;
-    }
-
-    public override void Flatten()
-    {
-        throw new NotImplementedException();
     }
 }
 

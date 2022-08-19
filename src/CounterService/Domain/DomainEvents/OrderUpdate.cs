@@ -28,9 +28,4 @@ public class OrderUpdate : EventBase
         OrderStatus = orderStatus;
         MadeBy = madeBy;
     }
-
-    public override void Flatten()
-    {
-        throw new NotImplementedException();
-    }
 }

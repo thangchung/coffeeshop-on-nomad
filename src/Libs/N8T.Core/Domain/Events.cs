@@ -21,7 +21,7 @@ namespace N8T.Core.Domain
         public DateTime CreatedAt { get; } = DateTime.UtcNow;
         public string CorrelationId { get; init; }
         public IDictionary<string, object> MetaData { get; } = new Dictionary<string, object>();
-        public abstract void Flatten();
+        public virtual void Flatten() {}
     }
 
     public class EventWrapper : INotification

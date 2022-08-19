@@ -1,4 +1,4 @@
-﻿namespace CoffeeShop.Domain.Commands;
+﻿namespace CounterService.Domain.Commands;
 
 public enum CommandType
 {

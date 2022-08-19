@@ -1,7 +1,6 @@
-﻿using CounterService.Domain;
-using MediatR;
+﻿using MediatR;
 
-namespace CoffeeShop.Domain.Commands;
+namespace CounterService.Domain.Commands;
 
 public class PlaceOrderCommand : IRequest<IResult>
 {

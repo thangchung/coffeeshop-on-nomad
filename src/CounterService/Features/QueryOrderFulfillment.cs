@@ -37,7 +37,7 @@ internal class OrderFulfillmentValidator : AbstractValidator<OrderFulfillmentQue
     }
 }
 
-public class QueryOrderFulfillment : IRequestHandler<OrderFulfillmentQuery, IResult>
+internal class QueryOrderFulfillment : IRequestHandler<OrderFulfillmentQuery, IResult>
 {
     private readonly IRepository<Order> _orderRepository;
 

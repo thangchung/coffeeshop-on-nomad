@@ -24,9 +24,4 @@ public class BaristaOrderUp : EventBase
         MadeBy = madeBy;
         TimeUp = timeUp;
     }
-
-    public override void Flatten()
-    {
-        throw new NotImplementedException();
-    }
 }
