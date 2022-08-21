@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerApi", "src\ServerApi\ServerApi.csproj", "{D73AA5C3-8B2A-400B-9614-ADAEE18572AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGen", "src\Client\DataGen.csproj", "{04160616-A26C-47AF-9A5E-D70486F39242}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D73AA5C3-8B2A-400B-9614-ADAEE18572AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D73AA5C3-8B2A-400B-9614-ADAEE18572AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D73AA5C3-8B2A-400B-9614-ADAEE18572AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D73AA5C3-8B2A-400B-9614-ADAEE18572AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04160616-A26C-47AF-9A5E-D70486F39242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04160616-A26C-47AF-9A5E-D70486F39242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04160616-A26C-47AF-9A5E-D70486F39242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04160616-A26C-47AF-9A5E-D70486F39242}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
