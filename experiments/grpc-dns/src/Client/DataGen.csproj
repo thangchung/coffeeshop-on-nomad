@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
@@ -17,11 +17,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Protobuf Include="..\ServerApi\Protos\greet.proto" Link="greet.proto" GrpcServices="Client" />
+        <Protobuf Include="..\Protos\greet.proto" Link="greet.proto" GrpcServices="Client" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\ServerApi\ServerApi.csproj" />
-    </ItemGroup>
 
 </Project>

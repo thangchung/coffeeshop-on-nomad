@@ -36,13 +36,14 @@ public class Worker : BackgroundService
                 Credentials = ChannelCredentials.Insecure,
             };
 
-            var serverUri = "http://localhost:15000";
+            var serverUri = _config.GetValue<string>("ServerUri");
             if (useGrpcDns)
             {
                 chanOptions.ServiceConfig = new ServiceConfig {LoadBalancingConfigs = {new RoundRobinConfig()}};
                 serverUri = _config.GetValue<string>("ConsulServerUri");
             }
 
+            _logger.LogInformation("Server URI: {Url}", serverUri);
             using var channel = GrpcChannel.ForAddress(serverUri, chanOptions);
 
             var client = new Greeter.GreeterClient(channel);

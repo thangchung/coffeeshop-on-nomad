@@ -6,6 +6,8 @@ apt update
 apt install software-properties-common -y
 apt update
 
+sudo apt install dnsutils -y
+
 echo "Adding HashiCorp GPG key and repo..."
 curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
 apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
@@ -27,5 +29,9 @@ sudo apt-get install nomad=1.3.1-1 -y
 echo "Installing .NET 6..."
 sudo apt-get update && \
   sudo apt-get install -y dotnet6
+
+echo "Fixing nomad coundn't run on WSL2 Linux distro"
+sudo mkdir -p /lib/modules/$(uname -r)/
+echo '_/bridge.ko' | sudo tee -a /lib/modules/$(uname -r)/modules.builtin
 
 source /etc/environment

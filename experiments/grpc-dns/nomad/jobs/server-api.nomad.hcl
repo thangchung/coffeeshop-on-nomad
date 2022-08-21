@@ -12,34 +12,39 @@ job "server-api" {
     network {
       mode = "bridge"
 
-      port "http" {
-        to = 5001
+      // port "http" {
+      //   to = 5000
+      // }
+
+      port "grpc" {
+        to = 15000
       }
     }
+
+    // service {
+    //   name = "server-api"
+    //   port = "5000"
+
+    //   connect {
+    //     sidecar_service {}
+    //   }
+    // }
 
     service {
       name = "server-api"
-      port = "5001"
+      port = "15000"
 
-      connect {
-        sidecar_service {}
-      }
+      // connect {
+      //   sidecar_service {}
+      // }
     }
 
-    task "product-api" {
-      driver = "raw_exec"
-
-      artifact {
-        source = "git::https://github.com/thangchung/coffeeshop-on-nomad"
-        destination = "local/repo"
-      }
+    task "server-api" {
+      driver = "docker"
 
       config {
-        command = "bash"
-        args = [
-          "-c",
-          "cd local/repo/ && dotnet build ./experiments/grpc-dns/src/ServerApi/ServerApi.csproj && dotnet run ./experiments/grpc-dns/src/ServerApi/ServerApi.csproj"
-        ]
+        image = "ghcr.io/thangchung/coffeeshop-on-nomad/grpc-dns-server:0.0.1"
+        // force_pull = true
       }
 
       env {
@@ -51,7 +56,7 @@ job "server-api" {
 
       resources {
         cpu    = 100
-        memory = 128
+        memory = 200
       }
     }
   }

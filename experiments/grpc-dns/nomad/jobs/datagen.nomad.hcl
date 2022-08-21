@@ -18,36 +18,38 @@ job "datagen" {
     service {
       name = "datagen"
 
-      connect {
-        sidecar_service {}
-      }
+      // connect {
+      //   sidecar_service {
+      //     proxy {
+      //       upstreams {
+      //         destination_name = "server-api"
+      //         local_bind_port  = 15000
+      //       }
+      //     }
+      //   }
+      // }
     }
 
     task "datagen" {
-      driver = "raw_exec"
-
-      artifact {
-        source = "git::https://github.com/thangchung/coffeeshop-on-nomad"
-        destination = "local/repo"
-      }
+      driver = "docker"
 
       config {
-        command = "bash"
-        args = [
-          "-c",
-          "cd local/repo/ && dotnet build ./experiments/grpc-dns/src/Client/DataGen.csproj && dotnet run ./experiments/grpc-dns/src/Client/DataGen.csproj"
-        ]
+        image = "ghcr.io/thangchung/coffeeshop-on-nomad/grpc-dns-client:0.0.1"
+        // force_pull = true
       }
 
       env {
         ASPNETCORE_ENVIRONMENT = "Development"
+        COREHOST_TRACE = 1
         UseGrpcDns = true
-        ConsulServerUri = "dns:///127.0.0.1:8500/server-api.service.consul"
+        ConsulServerUri = "dns:///172.18.0.1:8500/server-api.service.consul"
+        //ConsulServerUri = "dns:///127.0.0.1:8500/server-api.service.consul"
+        //consul://user:passsword@127.0.0.1:8500/service_name
       }
 
       resources {
-        cpu    = 70
-        memory = 150
+        cpu    = 100
+        memory = 200
       }
     }
   }
