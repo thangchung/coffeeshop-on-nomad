@@ -18,16 +18,16 @@ job "datagen" {
     service {
       name = "datagen"
 
-      // connect {
-      //   sidecar_service {
-      //     proxy {
-      //       upstreams {
-      //         destination_name = "server-api"
-      //         local_bind_port  = 15000
-      //       }
-      //     }
-      //   }
-      // }
+      connect {
+        sidecar_service {
+          proxy {
+            upstreams {
+              destination_name = "server-api"
+              local_bind_port  = 15000
+            }
+          }
+        }
+      }
     }
 
     task "datagen" {
@@ -41,8 +41,9 @@ job "datagen" {
       env {
         ASPNETCORE_ENVIRONMENT = "Development"
         COREHOST_TRACE = 1
-        UseGrpcDns = true
-        ConsulServerUri = "dns:///172.18.0.1:8500/server-api.service.consul"
+        UseGrpcDns = false
+        ServerUri = "http://${NOMAD_UPSTREAM_ADDR_server_api}"
+        // ConsulServerUri = "dns:///127.0.0.1:8600/server-api.service.consul"
         //ConsulServerUri = "dns:///127.0.0.1:8500/server-api.service.consul"
         //consul://user:passsword@127.0.0.1:8500/service_name
       }
