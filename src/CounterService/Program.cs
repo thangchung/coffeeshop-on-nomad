@@ -17,17 +17,18 @@ using System.Net;
 AnsiConsole.Write(new FigletText("Counter APIs").Color(Color.MediumPurple));
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.AddOTelLogs();
 
-builder.WebHost.ConfigureKestrel(webBuilder =>
-{
-    webBuilder.Listen(IPAddress.Any, builder.Configuration.GetValue("RestPort", 5002)); // REST
-});
+builder.WebHost
+    .AddOTelLogs()
+    .ConfigureKestrel(webBuilder =>
+    {
+        webBuilder.Listen(IPAddress.Any, builder.Configuration.GetValue("RestPort", 5002)); // REST
+    });
 
 builder.Services
     .AddHttpContextAccessor()
-    .AddCustomMediatR(new[] { typeof(Order) })
-    .AddCustomValidators(new[] { typeof(Order) });
+    .AddCustomMediatR(new[] {typeof(Order)})
+    .AddCustomValidators(new[] {typeof(Order)});
 
 builder.Services
     .AddPostgresDbContext<MainDbContext>(
@@ -38,8 +39,9 @@ builder.Services
 
 builder.Services.AddSignalR();
 
-builder.Services.AddOTelTracing(builder.Configuration);
-builder.Services.AddOTelMetrics(builder.Configuration);
+builder.Services
+    .AddOTelTracing(builder.Configuration)
+    .AddOTelMetrics(builder.Configuration);
 
 builder.Services.AddMassTransit(x =>
 {
@@ -47,7 +49,7 @@ builder.Services.AddMassTransit(x =>
     x.AddConsumer<KitchenOrderUpdatedConsumer>(typeof(KitchenOrderUpdatedConsumerDefinition));
 
     x.SetKebabCaseEndpointNameFormatter();
-    
+
     x.UsingRabbitMq((context, cfg) =>
     {
         cfg.Host(builder.Configuration.GetValue<string>("RabbitMqUrl")!);

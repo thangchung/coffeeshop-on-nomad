@@ -100,10 +100,15 @@ public static class Extensions
     {
         var metricsExporter = config.GetValue<string>("UseMetricsExporter").ToLowerInvariant();
 
+        void ConfigureResource(ResourceBuilder r) => r.AddService(config.GetValue<string>("Otlp:ServiceName"),
+            serviceVersion: "unknown", serviceInstanceId: Environment.MachineName);
+
         services.AddOpenTelemetryMetrics(bd =>
         {
-            bd.AddAspNetCoreInstrumentation();
-            bd.AddHttpClientInstrumentation();
+            bd.ConfigureResource(ConfigureResource)
+                .AddRuntimeInstrumentation()
+                .AddAspNetCoreInstrumentation()
+                .AddHttpClientInstrumentation();
 
             switch (metricsExporter)
             {
@@ -119,7 +124,10 @@ public static class Extensions
                     });
                     break;
                 case "otlp":
-                    bd.AddOtlpExporter();
+                    bd.AddOtlpExporter(otlpOptions =>
+                    {
+                        otlpOptions.Endpoint = new Uri(config.GetValue<string>("Otlp:Endpoint"));
+                    });
                     break;
                 case "":
                 case "none":
