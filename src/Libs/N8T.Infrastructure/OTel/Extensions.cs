@@ -72,7 +72,7 @@ public static class Extensions
                 // For options which can be configured from code only.
                 services.Configure<AspNetCoreInstrumentationOptions>(options =>
                 {
-                    options.Filter = req => req.Request.Host != null;
+                    options.Filter = _ => true;
                 });
                 break;
             case "otlp":

@@ -27,13 +27,7 @@ namespace N8T.Infrastructure.Auth
             }
         }
 
-        public string JwtToken
-        {
-            get
-            {
-                return _httpContextAccessor.HttpContext?.Request?.Headers["Authorization"];
-            }
-        }
+        public string JwtToken => _httpContextAccessor.HttpContext?.Request?.Headers["Authorization"];
 
         public bool IsAuthenticated
         {
