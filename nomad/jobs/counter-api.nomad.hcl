@@ -1,3 +1,9 @@
+variable "docker-image-version" {
+  type        = string
+  default     = "latest"
+  description = "the docker image version"
+}
+
 job "counter-api" {
   datacenters = ["dc1"]
 
@@ -55,7 +61,7 @@ job "counter-api" {
       driver = "docker"
 
       config {
-        image = "ghcr.io/thangchung/coffeeshop-on-nomad/counter-service:0.1.3"
+        image = "ghcr.io/thangchung/coffeeshop-on-nomad/counter-service:${var.docker-image-version}"
         ports = [ "http" ]
         // force_pull = true
       }

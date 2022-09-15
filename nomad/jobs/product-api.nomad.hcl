@@ -1,3 +1,9 @@
+variable "docker-image-version" {
+  type        = string
+  default     = "latest"
+  description = "the docker image version"
+}
+
 job "product-api" {
   datacenters = ["dc1"]
 
@@ -53,7 +59,7 @@ job "product-api" {
       // }
 
       config {
-        image = "ghcr.io/thangchung/coffeeshop-on-nomad/product-service:0.1.3"
+        image = "ghcr.io/thangchung/coffeeshop-on-nomad/product-service:${var.docker-image-version}"
         // force_pull = true
         ports = ["http"]
       }

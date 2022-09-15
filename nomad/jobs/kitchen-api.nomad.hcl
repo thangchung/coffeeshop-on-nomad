@@ -1,3 +1,9 @@
+variable "docker-image-version" {
+  type        = string
+  default     = "latest"
+  description = "the docker image version"
+}
+
 job "kitchen-api" {
   datacenters = ["dc1"]
 
@@ -27,7 +33,7 @@ job "kitchen-api" {
       driver = "docker"
 
       config {
-        image = "ghcr.io/thangchung/coffeeshop-on-nomad/kitchen-service:0.1.3"
+        image = "ghcr.io/thangchung/coffeeshop-on-nomad/kitchen-service:${var.docker-image-version}"
         ports = [ "http" ]
         // force_pull = true
       }
