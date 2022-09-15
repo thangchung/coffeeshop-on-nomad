@@ -31,9 +31,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.TOKEN }}
 
-      - name: Run minver
-        id: version
-        uses: thefringeninja/action-minver
+      - name: Build
+        shell: bash
+        run: |
+          # Restore .NET tools
+          dotnet tool restore
+
+          # Get the version number
+          VERSION=$(dotnet minver -t v -v e -d preview)
 
       - name: CounterService - Extract metadata for Docker
         id: meta
@@ -41,7 +46,7 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }}/counter-service
           tags: |
-            type=semver,pattern={{ steps.version.outputs.version }},priority=1
+            type=semver,pattern={{ env.VERSION }},priority=1
             type=sha,priority=2
           flavor: |
             latest=true
