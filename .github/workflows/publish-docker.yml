@@ -38,7 +38,8 @@ jobs:
           dotnet tool restore
 
           # Get the version number
-          VERSION=$(dotnet minver -t v -v e -d ./src/CounterService)
+          export VERSION=$(dotnet minver -t v -v e -d ./src/CounterService)
+          echo "::set-env name=VERSION::$VERSION"
 
       - name: CounterService - Extract metadata for Docker
         id: meta
