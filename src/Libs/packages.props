@@ -1,13 +1,19 @@
 <Project>
 
   <PropertyGroup>
-    <Product>CleanArchitectureDotNet</Product>
+    <Product>CoffeeShopOnNomad</Product>
     <Authors>Thang Chung</Authors>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/thangchung/clean-architecture-dotnet.git</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/thangchung/clean-architecture-dotnet</PackageProjectUrl>
-    <PackageLicense>https://github.com/thangchung/clean-architecture-dotnet/blob/master/LICENSE</PackageLicense>
+    <RepositoryUrl>https://github.com/thangchung/coffeeshop-on-nomad.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/thangchung/coffeeshop-on-nomad</PackageProjectUrl>
+    <PackageLicense>https://github.com/thangchung/coffeeshop-on-nomad/blob/master/LICENSE</PackageLicense>
     <Copyright>Copyright (c) Thang Chung - 2022</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <MinVerDefaultPreReleasePhase>preview</MinVerDefaultPreReleasePhase>
+    <MinVerMinimumMajorMinor>0.1</MinVerMinimumMajorMinor>
+    <MinVerTagPrefix>v</MinVerTagPrefix>
   </PropertyGroup>
 
 </Project>

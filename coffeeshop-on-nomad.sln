@@ -12,6 +12,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "N8T.Infrastructure.EfCore", "src\Libs\N8T.Infrastructure.EfCore\N8T.Infrastructure.EfCore.csproj", "{F408CC02-E389-4EFA-A0B8-2778E1BF56E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{82307FD7-80E2-45EA-8305-C52CC18489BE}"
+	ProjectSection(SolutionItems) = preProject
+		src\Libs\packages.props = src\Libs\packages.props
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SupportServices", "SupportServices", "{D2B83938-1127-437D-B2FE-CE0BD2D64C5A}"
 EndProject

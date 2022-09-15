@@ -9,5 +9,5 @@ public class ItemDto
 public class ItemTypeDto
 {
     public ItemType Type { get; set; }
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
 }

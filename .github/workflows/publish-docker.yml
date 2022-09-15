@@ -1,0 +1,53 @@
+name: Publish Docker Image
+
+on:
+  push:
+    tags:
+    - "*"
+
+jobs:
+  push_to_gpr:
+    name: Push Docker image to GitHub Package Registry
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 7.0.x
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.TOKEN }}
+
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=semver,pattern={{raw}},priority=1
+            type=semver,pattern={{version}},priority=2
+            type=semver,pattern={{major}}.{{minor}},priority=3
+            type=sha,priority=4
+          flavor: |
+            latest=true
+
+      - name: CounterService - Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          file: ./src/CounterService/Dockerfile
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
