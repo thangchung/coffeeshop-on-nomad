@@ -38,7 +38,7 @@ jobs:
           dotnet tool restore
 
           # Get the version number
-          echo "VERSION=$(dotnet minver -t v -v e -d ./src/CounterService)" >> $GITHUB_ENV
+          echo "VERSION=$(dotnet minver -t v -m 0.1 --default-pre-release-phase preview -v e -d ./src/CounterService)" >> $GITHUB_ENV
 
       - name: CounterService - Extract metadata for Docker
         id: meta
