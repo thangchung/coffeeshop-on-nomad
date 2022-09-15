@@ -31,7 +31,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.TOKEN }}
 
-      - name: Build
+      - name: Fetch version
         shell: bash
         run: |
           # Restore .NET tools
@@ -46,8 +46,7 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }}/counter-service
           tags: |
-            type=semver,pattern={{ env.VERSION }},priority=1
-            type=sha,priority=2
+            type=raw,value=${{ env.VERSION }}
           flavor: |
             latest=true
 
