@@ -35,7 +35,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/${{ github.repository }}
+          images: ghcr.io/${{ github.repository }}/counter-service
           tags: |
             type=semver,pattern={{raw}},priority=1
             type=semver,pattern={{version}},priority=2
