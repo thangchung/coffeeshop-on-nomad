@@ -31,16 +31,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.TOKEN }}
 
-      - name: Extract metadata for Docker
+      - name: CounterService - Extract metadata for Docker
         id: meta
         uses: docker/metadata-action@v4
         with:
           images: ghcr.io/${{ github.repository }}/counter-service
           tags: |
-            type=semver,pattern={{raw}},priority=1
-            type=semver,pattern={{version}},priority=2
-            type=semver,pattern={{major}}.{{minor}},priority=3
-            type=sha,priority=4
+            type=semver,pattern={{version}},priority=1
+            type=semver,pattern={{major}}.{{minor}},priority=2
+            type=sha,priority=3
           flavor: |
             latest=true
 
