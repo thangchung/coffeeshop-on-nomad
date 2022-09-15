@@ -34,13 +34,11 @@ jobs:
       - name: Fetch version
         shell: bash
         run: |
-          ACTIONS_ALLOW_UNSECURE_COMMANDS=true
           # Restore .NET tools
           dotnet tool restore
 
           # Get the version number
-          export VERSION=$(dotnet minver -t v -v e -d ./src/CounterService)
-          echo "::set-env name=VERSION::$VERSION"
+          echo "VERSION=$(dotnet minver -t v -v e -d ./src/CounterService)" >> $GITHUB_ENV
 
       - name: CounterService - Extract metadata for Docker
         id: meta
