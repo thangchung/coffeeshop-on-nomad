@@ -3,7 +3,8 @@ name: Publish Docker Image
 on:
   push:
     branches:
-    - "*"
+      - master
+      - feat/*
 
 jobs:
   push_to_gpr:
