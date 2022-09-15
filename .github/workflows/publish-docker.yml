@@ -31,15 +31,18 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.TOKEN }}
 
+      - name: Run minver
+        id: version
+        uses: thefringeninja/action-minver
+
       - name: CounterService - Extract metadata for Docker
         id: meta
         uses: docker/metadata-action@v4
         with:
           images: ghcr.io/${{ github.repository }}/counter-service
           tags: |
-            type=semver,pattern={{version}},priority=1
-            type=semver,pattern={{major}}.{{minor}},priority=2
-            type=sha,priority=3
+            type=semver,pattern={{ steps.version.outputs.version }},priority=1
+            type=sha,priority=2
           flavor: |
             latest=true
 
