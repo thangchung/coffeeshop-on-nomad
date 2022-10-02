@@ -353,4 +353,5 @@ out/
 **/.vagrant/
 .idea/
 local/data/
+portainer-data/
 .env
