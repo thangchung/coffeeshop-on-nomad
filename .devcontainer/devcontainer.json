@@ -10,6 +10,7 @@
 			"VARIANT": "ubuntu-22.04"
 		}
 	},
+	
 	"extensions": [
 		"mutantdino.resourcemonitor",
 		"humao.rest-client",
@@ -20,8 +21,10 @@
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "uname -a",
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "vscode",
+	// "remoteUser": "vscode",
 	"features": {
-		"docker-in-docker": "latest"
+		"ghcr.io/devcontainers/features/docker-from-docker:1": {
+            "version": "latest"
+        }
 	}
 }

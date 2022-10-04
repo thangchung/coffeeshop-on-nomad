@@ -71,8 +71,8 @@ F1 in vscode and choose `Remote-Containers: Open Folder in Container...`, then w
 ```bash
 # check linux version
 > cat /etc/os-release
-# build all images of application
-> docker compose build 
+# build all images of application, should run with `root` user
+$ docker compose build 
 ```
 
 Open a new tab
@@ -117,7 +117,20 @@ $ sudo sysctl -w vm.max_map_count=262144
 
 Now, we can run `docker-compose up` again.
 
-# References
+## `devcontainer`: `socat` IP address of docker to host IP
 
-- Traefix dashboad: https://traefik.io/blog/traefik-proxy-fully-integrates-with-hashicorp-nomad/
-- Rewrite URL on Nomad: https://doc.traefik.io/traefik/migration/v1-to-v2/#strip-and-rewrite-path-prefixes
+With `docker-from-docker` feature, we couldn't access the localhost of `docker` on host IP so that we have to cast the IP of docker inside to Host IP using `socat`
+
+1. Get host IP using
+
+```bash
+> ifconfig
+# make sure you get eth0 IP address, e.g. 192.168.255.214
+```
+
+2. Inside `devcontainer` with `docker-from-docker` feature
+
+```bash
+# make sure using root user inside devcontainer
+$ socat TCP4-LISTEN:8080 TCP4:192.168.255.214:8080
+```
