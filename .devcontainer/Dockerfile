@@ -21,3 +21,8 @@ RUN LATEST_COMPOSE_VERSION=$(curl -sSL "https://api.github.com/repos/docker/comp
     && mkdir -p ~/.docker/cli-plugins/ \ 
     && curl -sSL "https://github.com/docker/compose/releases/download/${LATEST_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o ~/.docker/cli-plugins/docker-compose \
     && chmod +x ~/.docker/cli-plugins/docker-compose
+
+COPY core-libs.sh /tmp/
+RUN yes | unminimize 2>&1 \ 
+    && bash /tmp/core-libs.sh \
+    && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/core-libs.sh

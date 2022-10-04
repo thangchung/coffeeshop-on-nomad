@@ -37,3 +37,7 @@ sudo apt-get install nomad=1.3.1-1 -y
 # EOF
 
 source /etc/environment
+
+# nomad cannot run on wsl2 image, then we need to work-around
+sudo mkdir -p /lib/modules/$(uname -r)/
+echo '_/bridge.ko' | sudo tee -a /lib/modules/$(uname -r)/modules.builtin
