@@ -1,5 +1,16 @@
+variable "docker-image-version" {
+  type        = string
+  default     = "latest"
+  description = "the docker image version"
+}
+
 job "barista-api" {
   datacenters = ["dc1"]
+
+  constraint {
+    attribute = "${attr.kernel.name}"
+    value     = "linux"
+  }
 
   group "barista-api" {
     count = 1
@@ -22,7 +33,7 @@ job "barista-api" {
       driver = "docker"
 
       config {
-        image = "ghcr.io/thangchung/coffeeshop-on-nomad/barista-service:0.1.2"
+        image = "ghcr.io/thangchung/coffeeshop-on-nomad/barista-service:${var.docker-image-version}"
         // force_pull = true
         ports = [ "http" ]
       }

@@ -1,5 +1,5 @@
 ﻿using CoffeeShop.Contracts;
-using CoffeeShop.Domain.DomainEvents;
+using CounterService.Domain.DomainEvents;
 using MassTransit;
 using MediatR;
 using N8T.Core.Domain;

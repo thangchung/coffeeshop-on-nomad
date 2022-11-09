@@ -1,5 +1,16 @@
+variable "docker-image-version" {
+  type        = string
+  default     = "latest"
+  description = "the docker image version"
+}
+
 job "counter-api" {
   datacenters = ["dc1"]
+
+  constraint {
+    attribute = "${attr.kernel.name}"
+    value     = "linux"
+  }
 
   group "counter-api" {
     count = 1
@@ -40,7 +51,7 @@ job "counter-api" {
         "traefik.consulcatalog.connect=true",
         "traefik.port=5002",
         "traefik.http.routers.counterapi.entryPoints=web",
-        "traefik.http.routers.counterapi.rule=Host(`nomadvn.eastus.cloudapp.azure.com`) && PathPrefix(`/counter-api`)",
+        "traefik.http.routers.counterapi.rule=PathPrefix(`/counter-api`)",
         "traefik.http.routers.counterapi.middlewares=counterapi-stripprefix",
         "traefik.http.middlewares.counterapi-stripprefix.stripprefix.prefixes=/counter-api",
       ]
@@ -50,7 +61,7 @@ job "counter-api" {
       driver = "docker"
 
       config {
-        image = "ghcr.io/thangchung/coffeeshop-on-nomad/counter-service:0.1.2"
+        image = "ghcr.io/thangchung/coffeeshop-on-nomad/counter-service:${var.docker-image-version}"
         ports = [ "http" ]
         // force_pull = true
       }

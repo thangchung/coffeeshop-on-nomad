@@ -1,5 +1,4 @@
-﻿using CoffeeShop.Domain.Commands;
-using CoffeeShop.Domain.DomainEvents;
+﻿using CounterService.Domain.Commands;
 using CounterService.Domain.DomainEvents;
 using N8T.Core.Domain;
 

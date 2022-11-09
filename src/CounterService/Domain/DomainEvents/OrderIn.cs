@@ -1,7 +1,7 @@
 ﻿using CoffeeShop.Contracts;
 using N8T.Core.Domain;
 
-namespace CoffeeShop.Domain.DomainEvents;
+namespace CounterService.Domain.DomainEvents;
 
 public class OrderIn : EventBase
 {
@@ -16,11 +16,6 @@ public class OrderIn : EventBase
         ItemLineId = itemLineId;
         ItemType = itemType;
         TimeIn = DateTime.UtcNow;
-    }
-
-    public override void Flatten()
-    {
-        throw new NotImplementedException();
     }
 }
 

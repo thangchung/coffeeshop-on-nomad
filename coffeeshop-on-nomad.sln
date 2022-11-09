@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataGen", "src\DataGen\DataGen.csproj", "{9A548D0A-985A-44A0-BDD9-981F1CBC4A66}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "N8T.Core", "src\Libs\N8T.Core\N8T.Core.csproj", "{2AB374A7-A94B-4F62-B8DA-39E55CC153FB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "N8T.Infrastructure", "src\Libs\N8T.Infrastructure\N8T.Infrastructure.csproj", "{6FAB9CEB-D272-436E-B961-EE4F83D799EA}"
@@ -12,8 +10,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "N8T.Infrastructure.EfCore", "src\Libs\N8T.Infrastructure.EfCore\N8T.Infrastructure.EfCore.csproj", "{F408CC02-E389-4EFA-A0B8-2778E1BF56E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{82307FD7-80E2-45EA-8305-C52CC18489BE}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SupportServices", "SupportServices", "{D2B83938-1127-437D-B2FE-CE0BD2D64C5A}"
+	ProjectSection(SolutionItems) = preProject
+		src\Libs\packages.props = src\Libs\packages.props
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductService", "src\ProductService\ProductService.csproj", "{7099E3B9-DE44-4455-B4AE-8C1C1D6EF5F8}"
 EndProject
@@ -31,16 +30,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CoreServices", "CoreService
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeShop.Contracts", "src\Libs\CoffeeShop.Contracts\CoffeeShop.Contracts.csproj", "{BBD8E8FB-B22A-4AFF-A980-B275367650E6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{A1CAA8C0-42B6-472E-83F1-5937DCDCA199}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitignore = .gitignore
+		client.http = client.http
+		Directory.Packages.props = Directory.Packages.props
+		docker-compose.yaml = docker-compose.yaml
+		docker-compose-o11y.yaml = docker-compose-o11y.yaml
+		global.json = global.json
+		NuGet.Config = NuGet.Config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9A548D0A-985A-44A0-BDD9-981F1CBC4A66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9A548D0A-985A-44A0-BDD9-981F1CBC4A66}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9A548D0A-985A-44A0-BDD9-981F1CBC4A66}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9A548D0A-985A-44A0-BDD9-981F1CBC4A66}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2AB374A7-A94B-4F62-B8DA-39E55CC153FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2AB374A7-A94B-4F62-B8DA-39E55CC153FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AB374A7-A94B-4F62-B8DA-39E55CC153FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -82,7 +89,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{9A548D0A-985A-44A0-BDD9-981F1CBC4A66} = {D2B83938-1127-437D-B2FE-CE0BD2D64C5A}
 		{2AB374A7-A94B-4F62-B8DA-39E55CC153FB} = {82307FD7-80E2-45EA-8305-C52CC18489BE}
 		{6FAB9CEB-D272-436E-B961-EE4F83D799EA} = {82307FD7-80E2-45EA-8305-C52CC18489BE}
 		{F408CC02-E389-4EFA-A0B8-2778E1BF56E3} = {82307FD7-80E2-45EA-8305-C52CC18489BE}

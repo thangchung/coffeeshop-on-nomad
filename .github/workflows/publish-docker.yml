@@ -1,0 +1,121 @@
+name: Publish Docker Image
+
+on:
+  push:
+    branches:
+      - master
+      - feat/*
+
+jobs:
+  push_to_gpr:
+    name: Push Docker image to GitHub Package Registry
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 7.0.100
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.TOKEN }}
+
+      - name: Fetch version
+        shell: bash
+        run: |
+          # Restore .NET tools
+          dotnet tool restore
+
+          # Get the version number
+          echo "VERSION=$(dotnet minver -t v -m 0.1 --default-pre-release-phase preview -v e -d ./src/CounterService)" >> $GITHUB_ENV
+
+      # counter-service
+      - name: CounterService - Extract metadata for Docker
+        id: counnter-meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/${{ github.repository }}/counter-service
+          tags: |
+            type=raw,value=${{ env.VERSION }}
+          flavor: |
+            latest=true
+
+      - name: CounterService - Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          file: ./src/CounterService/Dockerfile
+          context: .
+          push: true
+          tags: ${{ steps.counnter-meta.outputs.tags }}
+          labels: ${{ steps.counnter-meta.outputs.labels }}
+
+      # barista-service
+      - name: BaristaService - Extract metadata for Docker
+        id: barista-meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/${{ github.repository }}/barista-service
+          tags: |
+            type=raw,value=${{ env.VERSION }}
+          flavor: |
+            latest=true
+
+      - name: BaristaService - Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          file: ./src/BaristaService/Dockerfile
+          context: .
+          push: true
+          tags: ${{ steps.barista-meta.outputs.tags }}
+          labels: ${{ steps.barista-meta.outputs.labels }}
+
+      # kitchen-service
+      - name: KitchenService - Extract metadata for Docker
+        id: kitchen-meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/${{ github.repository }}/kitchen-service
+          tags: |
+            type=raw,value=${{ env.VERSION }}
+          flavor: |
+            latest=true
+
+      - name: KitchenService - Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          file: ./src/KitchenService/Dockerfile
+          context: .
+          push: true
+          tags: ${{ steps.kitchen-meta.outputs.tags }}
+          labels: ${{ steps.kitchen-meta.outputs.labels }}
+
+      # product-service
+      - name: ProductService - Extract metadata for Docker
+        id: product-meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ghcr.io/${{ github.repository }}/product-service
+          tags: |
+            type=raw,value=${{ env.VERSION }}
+          flavor: |
+            latest=true
+
+      - name: ProductService - Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          file: ./src/ProductService/Dockerfile
+          context: .
+          push: true
+          tags: ${{ steps.product-meta.outputs.tags }}
+          labels: ${{ steps.product-meta.outputs.labels }}

@@ -1,5 +1,5 @@
-﻿using CoffeeShop.Domain.Commands;
-using CounterService.Domain;
+﻿using CounterService.Domain;
+using CounterService.Domain.Commands;
 using FluentValidation;
 using MediatR;
 using N8T.Core.Domain;

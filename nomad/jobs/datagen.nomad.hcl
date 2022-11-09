@@ -1,6 +1,11 @@
 job "datagen" {
   datacenters = ["dc1"]
 
+  constraint {
+    attribute = "${attr.kernel.name}"
+    value     = "linux"
+  }
+
   group "datagen" {
     count = 1
     

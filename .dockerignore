@@ -24,3 +24,8 @@
 LICENSE
 README.md
 out/
+
+**/.vagrant/
+.idea/
+local/data/
+.env

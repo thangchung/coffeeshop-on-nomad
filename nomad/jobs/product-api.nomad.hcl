@@ -1,5 +1,16 @@
+variable "docker-image-version" {
+  type        = string
+  default     = "latest"
+  description = "the docker image version"
+}
+
 job "product-api" {
   datacenters = ["dc1"]
+
+  constraint {
+    attribute = "${attr.kernel.name}"
+    value     = "linux"
+  }
 
   group "svc" {
     count = 1
@@ -25,7 +36,7 @@ job "product-api" {
         "traefik.consulcatalog.connect=true",
         "traefik.port=5001",
         "traefik.http.routers.productapi.entryPoints=web",
-        "traefik.http.routers.productapi.rule=Host(`nomadvn.eastus.cloudapp.azure.com`) && PathPrefix(`/product-api`)",
+        "traefik.http.routers.productapi.rule=PathPrefix(`/product-api`)",
         "traefik.http.routers.productapi.middlewares=productapi-stripprefix",
         "traefik.http.middlewares.productapi-stripprefix.stripprefix.prefixes=/product-api",
       ]
@@ -48,7 +59,7 @@ job "product-api" {
       // }
 
       config {
-        image = "ghcr.io/thangchung/coffeeshop-on-nomad/product-service:0.1.3"
+        image = "ghcr.io/thangchung/coffeeshop-on-nomad/product-service:${var.docker-image-version}"
         // force_pull = true
         ports = ["http"]
       }

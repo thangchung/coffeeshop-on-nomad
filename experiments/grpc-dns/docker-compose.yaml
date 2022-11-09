@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+
+  server-api:
+    image: ghcr.io/thangchung/coffeeshop-on-nomad/grpc-dns-server:${IMAGE_TAG:-0.0.1}
+    build:
+      context: .
+      dockerfile: ./src/ServerApi/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RestPort=5000
+      - GrpcPort=15000
+    ports:
+      - "5000:5000"
+      - "15000:15000"
+    networks:
+      - coffeeshop-network
+  
+  datagen-app:
+    image: ghcr.io/thangchung/coffeeshop-on-nomad/grpc-dns-client:${IMAGE_TAG:-0.0.1}
+    build:
+      context: .
+      dockerfile: ./src/Client/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - UseGrpcDns=false
+      - ServerUri=http://server-api:15000
+    depends_on:
+      - server-api
+    restart: always
+    networks:
+      - coffeeshop-network
+
+networks:
+  coffeeshop-network:
