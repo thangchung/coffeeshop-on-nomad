@@ -1,71 +1,62 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
     <Import Project="..\packages.props" />
-
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
     </PropertyGroup>
-
     <ItemGroup>
         <!--https://github.com/dotnet/aspnetcore/issues/19481-->
         <!--https://docs.microsoft.com/en-us/aspnet/core/fundamentals/metapackage-app-->
         <!--https://docs.microsoft.com/en-us/aspnet/core/fundamentals/target-aspnetcore-->
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
-
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="7.0.0-rc.1.22426.10" />
-        <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0-rc.1.22426.10" />
-        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0-rc.1.22426.10" />
-        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="7.0.0-rc.1.22426.10" />
-        <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="7.0.0-rc.1.22426.10" />
-        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0-rc.1.22426.10" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0-rc.1.22426.10" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0-rc.1.22426.10" />
-        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0-rc.1.22426.10" />
-        <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="7.0.0-rc.1.22426.10" />
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0-rc.1.22426.10" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0-rc.1.22426.10" />
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0-rc.1.22426.10" />
-        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0-rc.1.22426.10" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0-rc.1.22427.2" />
-        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.0-rc.1.22427.2" />
-        <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Http" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Memory" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+        <PackageReference Include="Microsoft.Extensions.DependencyModel" />
+        <PackageReference Include="Microsoft.Extensions.Logging" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" />
+        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
+        <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" />
     </ItemGroup>
-
     <ItemGroup>
-        <PackageReference Include="Dapr.AspNetCore" Version="1.8.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta2" />
-        <PackageReference Include="Polly" Version="7.2.3" />
-        <PackageReference Include="Scrutor" Version="4.2.0" />
-        <PackageReference Include="Spectre.Console" Version="0.44.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-        <PackageReference Include="RestEase" Version="1.5.7" />
-        <PackageReference Include="RestEase.HttpClientFactory" Version="1.5.7" />
-        <PackageReference Include="TimeZoneConverter" Version="6.0.1" />
-        <PackageReference Include="MinVer" Version="4.2.0" PrivateAssets="All" />
+        <PackageReference Include="Dapr.AspNetCore" />
+        <PackageReference Include="Newtonsoft.Json" />
+        <PackageReference Include="Polly" />
+        <PackageReference Include="Scrutor" />
+        <PackageReference Include="Spectre.Console" />
+        <PackageReference Include="Swashbuckle.AspNetCore" />
+        <PackageReference Include="RestEase" />
+        <PackageReference Include="RestEase.HttpClientFactory" />
+        <PackageReference Include="TimeZoneConverter" />
+        <PackageReference Include="MinVer" PrivateAssets="All" />
     </ItemGroup>
-
     <ItemGroup>
-        <PackageReference Include="MassTransit" Version="8.0.6" />
-        <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.6" />
+        <PackageReference Include="MassTransit" />
+        <PackageReference Include="MassTransit.RabbitMQ" />
     </ItemGroup>
-
     <ItemGroup>
-        <PackageReference Include="OpenTelemetry" Version="1.4.0-alpha.2" />
-        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.4.0-alpha.2" />
-        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol.Logs" Version="1.4.0-alpha.2" />
-        <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.4.0-alpha.2" />
-        <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.0.0-rc9.6" />
-        <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" Version="1.0.0" />
-        <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.0.0-rc9.6" />
-        <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.0.0-rc9.6" />
-        <PackageReference Include="OpenTelemetry.Contrib.Instrumentation.EntityFrameworkCore" Version="1.0.0-beta2" />
+        <PackageReference Include="OpenTelemetry" />
+        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
+        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol.Logs" />
+        <PackageReference Include="OpenTelemetry.Exporter.Console" />
+        <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
+        <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
+        <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" />
+        <PackageReference Include="OpenTelemetry.Instrumentation.Http" />
+        <PackageReference Include="OpenTelemetry.Contrib.Instrumentation.EntityFrameworkCore" />
     </ItemGroup>
-
     <ItemGroup>
         <ProjectReference Include="..\N8T.Core\N8T.Core.csproj" />
     </ItemGroup>
-
 </Project>

@@ -14,8 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{82307FD7-8
 		src\Libs\packages.props = src\Libs\packages.props
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SupportServices", "SupportServices", "{D2B83938-1127-437D-B2FE-CE0BD2D64C5A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductService", "src\ProductService\ProductService.csproj", "{7099E3B9-DE44-4455-B4AE-8C1C1D6EF5F8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CounterService", "src\CounterService\CounterService.csproj", "{7F9AF527-4534-4898-952E-9BB31FB59F4B}"
@@ -31,6 +29,18 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CoreServices", "CoreServices", "{537DDBA7-ED33-4D73-AF68-F56A845D2C88}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeShop.Contracts", "src\Libs\CoffeeShop.Contracts\CoffeeShop.Contracts.csproj", "{BBD8E8FB-B22A-4AFF-A980-B275367650E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{A1CAA8C0-42B6-472E-83F1-5937DCDCA199}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.gitignore = .gitignore
+		client.http = client.http
+		Directory.Packages.props = Directory.Packages.props
+		docker-compose.yaml = docker-compose.yaml
+		docker-compose-o11y.yaml = docker-compose-o11y.yaml
+		global.json = global.json
+		NuGet.Config = NuGet.Config
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -36,7 +36,7 @@ job "product-api" {
         "traefik.consulcatalog.connect=true",
         "traefik.port=5001",
         "traefik.http.routers.productapi.entryPoints=web",
-        "traefik.http.routers.productapi.rule=Host(`nomadvn.eastus.cloudapp.azure.com`) && PathPrefix(`/product-api`)",
+        "traefik.http.routers.productapi.rule=PathPrefix(`/product-api`)",
         "traefik.http.routers.productapi.middlewares=productapi-stripprefix",
         "traefik.http.middlewares.productapi-stripprefix.stripprefix.prefixes=/product-api",
       ]

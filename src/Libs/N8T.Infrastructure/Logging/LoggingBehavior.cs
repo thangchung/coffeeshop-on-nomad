@@ -15,8 +15,8 @@ namespace N8T.Infrastructure.Logging
         public LoggingBehavior(ILogger<LoggingBehavior<TRequest, TResponse>> logger) => _logger = logger;
 
         public async Task<TResponse> Handle(TRequest request,
-            CancellationToken cancellationToken,
-            RequestHandlerDelegate<TResponse> next)
+            RequestHandlerDelegate<TResponse> next,
+            CancellationToken cancellationToken)
         {
             const string prefix = nameof(LoggingBehavior<TRequest, TResponse>);
 

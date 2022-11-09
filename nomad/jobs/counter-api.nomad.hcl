@@ -51,7 +51,7 @@ job "counter-api" {
         "traefik.consulcatalog.connect=true",
         "traefik.port=5002",
         "traefik.http.routers.counterapi.entryPoints=web",
-        "traefik.http.routers.counterapi.rule=Host(`nomadvn.eastus.cloudapp.azure.com`) && PathPrefix(`/counter-api`)",
+        "traefik.http.routers.counterapi.rule=PathPrefix(`/counter-api`)",
         "traefik.http.routers.counterapi.middlewares=counterapi-stripprefix",
         "traefik.http.middlewares.counterapi-stripprefix.stripprefix.prefixes=/counter-api",
       ]

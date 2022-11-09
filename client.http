@@ -1,4 +1,5 @@
-@host = http://localhost:8080
+@host = http://localhost
+# config: https://github.com/thangchung/coffeeshop-on-nomad/wiki/Know-how
 # @host = http://nomadvn.eastus.cloudapp.azure.com
 
 ###

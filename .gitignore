@@ -354,3 +354,4 @@ out/
 .idea/
 local/data/
 .env
+portainer-data/
