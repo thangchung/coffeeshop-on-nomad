@@ -3,7 +3,8 @@
     "extensions": [
         "ms-dotnettools.csharp",
         "mutantdino.resourcemonitor",
-        "humao.rest-client"
+        "humao.rest-client",
+        "GitHub.copilot"
     ],
     "postCreateCommand": "init.sh",
     "features": {
