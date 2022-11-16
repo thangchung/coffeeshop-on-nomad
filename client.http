@@ -1,9 +1,14 @@
-@host = http://localhost
+@host = http://localhost:8080
 # config: https://github.com/thangchung/coffeeshop-on-nomad/wiki/Know-how
 # @host = http://nomadvn.eastus.cloudapp.azure.com
 
+### Get Todos
+# dotnet user-jwts create --claim "myCustomClaim=green"
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InJvb3QiLCJzdWIiOiJyb290IiwianRpIjoiYzRmOThiNzkiLCJteUN1c3RvbUNsYWltIjoiZ3JlZW4iLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJuYmYiOjE2Njg2MDE5MzUsImV4cCI6MTY3NjU1MDczNSwiaWF0IjoxNjY4NjAxOTM2LCJpc3MiOiJkb3RuZXQtdXNlci1qd3RzIn0.eNHf6DKp5zL9UIKHWhUhh5f4ZaQNDIyP3BI2DDA0-wc
+
 ###
 GET {{host}}/product-api/v1/api/item-types HTTP/1.1
+Authorization: Bearer {{token}}
 content-type: application/json
 
 ###
