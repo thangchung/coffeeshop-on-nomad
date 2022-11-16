@@ -5,5 +5,8 @@
         "mutantdino.resourcemonitor",
         "humao.rest-client"
     ],
-    "postCreateCommand": "init.sh"
+    "postCreateCommand": "init.sh",
+    "features": {
+		"docker-from-docker": "latest"
+	}
 }
