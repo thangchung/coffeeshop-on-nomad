@@ -13,10 +13,12 @@ content-type: application/json
 
 ###
 GET {{host}}/product-api/v1/api/items-by-types/1,2,3 HTTP/1.1
+Authorization: Bearer {{token}}
 content-type: application/json
 
 ###
 POST {{host}}/counter-api/v1/api/orders HTTP/1.1
+Authorization: Bearer {{token}}
 content-type: application/json
 
 {
@@ -42,4 +44,5 @@ content-type: application/json
 
 ###
 GET {{host}}/counter-api/v1/api/fulfillment-orders HTTP/1.1
+Authorization: Bearer {{token}}
 content-type: application/json
