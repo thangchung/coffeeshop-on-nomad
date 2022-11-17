@@ -4,9 +4,12 @@ using System.Net;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using ReverseProxy;
 using Yarp.ReverseProxy.Transforms;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddProblemDetails();
 
 builder.Services.AddAuthentication().AddJwtBearer(options =>
 {
@@ -30,6 +33,8 @@ builder.Services.AddAuthorization(options =>
         .RequireAuthenticatedUser());
     options.FallbackPolicy = null; 
 });
+
+builder.Services.AddRateLimiting();
 
 builder.WebHost.AddOTelLogs();
 
@@ -55,8 +60,6 @@ builder.Services.AddReverseProxy()
                     var response = transformContext.HttpContext.Response;
                     response.StatusCode = 401;
                 }
-
-                // transformContext.ProxyRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             });
         }
     });
@@ -66,5 +69,16 @@ builder.Services.AddOTelMetrics(builder.Configuration);
 
 var app = builder.Build();
 
-app.MapReverseProxy();
+app.UseExceptionHandler();
+app.UseStatusCodePages();
+
+app.UseRateLimiter();
+
+app.MapReverseProxy().RequirePerUserRateLimit();
+
+// Configure the prometheus endpoint for scraping metrics
+// app.MapPrometheusScrapingEndpoint();
+// NOTE: This should only be exposed on an internal port!
+// .RequireHost("*:9100");
+
 app.Run();
