@@ -15,7 +15,7 @@ AnsiConsole.Write(new FigletText("Kitchen APIs").Color(Color.MediumPurple));
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost
-    .AddOTelLogs()
+    // .AddOTelLogs()
     .ConfigureKestrel(webBuilder =>
     {
         webBuilder.Listen(IPAddress.Any, builder.Configuration.GetValue("RestPort", 5004)); // REST
@@ -33,9 +33,9 @@ builder.Services
         svc => svc.AddRepository(typeof(Repository<>)))
     .AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services
-    .AddOTelTracing(builder.Configuration)
-    .AddOTelMetrics(builder.Configuration);
+// builder.Services
+//     .AddOTelTracing(builder.Configuration)
+//     .AddOTelMetrics(builder.Configuration);
 
 builder.Services.AddMassTransit(x =>
 {
@@ -49,6 +49,8 @@ builder.Services.AddMassTransit(x =>
         cfg.ConfigureEndpoints(context);
     });
 });
+
+builder.AddOpenTelemetry();
 
 var app = builder.Build();
 
@@ -67,5 +69,10 @@ app.UseRouting();
 //app.UseAuthorization();
 
 await app.DoDbMigrationAsync(app.Logger);
+
+// Configure the prometheus endpoint for scraping metrics
+app.MapPrometheusScrapingEndpoint();
+// NOTE: This should only be exposed on an internal port!
+// .RequireHost("*:9100");
 
 app.Run();

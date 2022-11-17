@@ -19,7 +19,7 @@ AnsiConsole.Write(new FigletText("Counter APIs").Color(Color.MediumPurple));
 var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost
-    .AddOTelLogs()
+    // .AddOTelLogs()
     .ConfigureKestrel(webBuilder =>
     {
         webBuilder.Listen(IPAddress.Any, builder.Configuration.GetValue("RestPort", 5002)); // REST
@@ -39,9 +39,9 @@ builder.Services
 
 builder.Services.AddSignalR();
 
-builder.Services
-    .AddOTelTracing(builder.Configuration)
-    .AddOTelMetrics(builder.Configuration);
+// builder.Services
+//     .AddOTelTracing(builder.Configuration)
+//     .AddOTelMetrics(builder.Configuration);
 
 builder.Services.AddMassTransit(x =>
 {
@@ -60,6 +60,8 @@ builder.Services.AddMassTransit(x =>
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IItemGateway, ItemRestGateway>();
 
+builder.AddOpenTelemetry();
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -74,13 +76,18 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseRouting();
 
-var orderGroup = app.MapGroup("/v1/api/orders");
+// var orderGroup = app.MapGroup("/v1/api/orders");
 
-_ = orderGroup.MapOrderInApiRoutes()
+_ = app.MapOrderInApiRoutes()
     .MapOrderFulfillmentApiRoutes();
 
 app.MapHub<NotificationHub>("/message");
 
 await app.DoDbMigrationAsync(app.Logger);
+
+// Configure the prometheus endpoint for scraping metrics
+app.MapPrometheusScrapingEndpoint();
+// NOTE: This should only be exposed on an internal port!
+// .RequireHost("*:9100");
 
 app.Run();

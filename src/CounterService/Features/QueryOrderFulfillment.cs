@@ -11,7 +11,7 @@ internal static class OrderFulfillmentRouteMapper
 {
     public static IEndpointRouteBuilder MapOrderFulfillmentApiRoutes(this IEndpointRouteBuilder builder)
     {
-        builder.MapGet("/fulfillment-orders", async (ISender sender) => await sender.Send(new OrderFulfillmentQuery()));
+        builder.MapGet("/v1/api/orders/fulfillment-orders", async (ISender sender) => await sender.Send(new OrderFulfillmentQuery()));
         return builder;
     }
 }

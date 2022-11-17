@@ -36,7 +36,7 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddRateLimiting();
 
-builder.WebHost.AddOTelLogs();
+// builder.WebHost.AddOTelLogs();
 
 builder.WebHost.ConfigureKestrel(webBuilder =>
 {
@@ -64,8 +64,9 @@ builder.Services.AddReverseProxy()
         }
     });
 
-builder.Services.AddOTelTracing(builder.Configuration);
-builder.Services.AddOTelMetrics(builder.Configuration);
+// builder.Services.AddOTelTracing(builder.Configuration);
+// builder.Services.AddOTelMetrics(builder.Configuration);
+builder.AddOpenTelemetry();
 
 var app = builder.Build();
 
@@ -77,7 +78,7 @@ app.UseRateLimiter();
 app.MapReverseProxy().RequirePerUserRateLimit();
 
 // Configure the prometheus endpoint for scraping metrics
-// app.MapPrometheusScrapingEndpoint();
+app.MapPrometheusScrapingEndpoint();
 // NOTE: This should only be exposed on an internal port!
 // .RequireHost("*:9100");
 

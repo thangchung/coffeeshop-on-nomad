@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MinVer" />
+    <PackageReference Include="MinVer" Version="4.2.0" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Libs\CoffeeShop.Contracts\CoffeeShop.Contracts.csproj" />
