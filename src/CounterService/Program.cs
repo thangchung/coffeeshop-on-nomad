@@ -74,9 +74,9 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseRouting();
 
-//app.UseAuthorization();
+var orderGroup = app.MapGroup("/v1/api/orders");
 
-_ = app.MapOrderInApiRoutes()
+_ = orderGroup.MapOrderInApiRoutes()
     .MapOrderFulfillmentApiRoutes();
 
 app.MapHub<NotificationHub>("/message");

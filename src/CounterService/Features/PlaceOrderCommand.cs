@@ -11,7 +11,7 @@ public static class OrderInRouteMapper
 {
     public static IEndpointRouteBuilder MapOrderInApiRoutes(this IEndpointRouteBuilder builder)
     {
-        builder.MapPost("/v1/api/orders", async (PlaceOrderCommand command, ISender sender) => await sender.Send(command));
+        builder.MapPost("", async (PlaceOrderCommand command, ISender sender) => await sender.Send(command));
         return builder;
     }
 }

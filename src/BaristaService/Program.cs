@@ -64,8 +64,6 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseRouting();
 
-//app.UseAuthorization();
-
 await app.DoDbMigrationAsync(app.Logger);
 
 app.Run();
