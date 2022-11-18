@@ -6,8 +6,8 @@
         "humao.rest-client",
         "GitHub.copilot"
     ],
-    "postCreateCommand": "init.sh",
+    "postCreateCommand": "./init.sh",
     "features": {
-		"docker-from-docker": "latest"
+		"docker-in-docker": "latest"
 	}
 }
