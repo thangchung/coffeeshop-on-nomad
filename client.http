@@ -1,4 +1,4 @@
-@host = http://localhost
+@host = http://localhost:8080
 # config: https://github.com/thangchung/coffeeshop-on-nomad/wiki/Know-how
 # @host = http://nomadvn.eastus.cloudapp.azure.com
 
@@ -8,6 +8,10 @@ content-type: application/json
 
 ###
 GET {{host}}/product-api/v1/api/items-by-types/1,2,3 HTTP/1.1
+content-type: application/json
+
+###
+GET {{host}}/counter-api/v1/api/fulfillment-orders HTTP/1.1
 content-type: application/json
 
 ###
@@ -34,7 +38,3 @@ content-type: application/json
   ],
   "timestamp": "2022-07-04T11:38:00.210Z"
 }
-
-###
-GET {{host}}/counter-api/v1/api/fulfillment-orders HTTP/1.1
-content-type: application/json

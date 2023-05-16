@@ -7,6 +7,8 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=P@ssw0rd
+    healthcheck:
+      test: ["CMD", "pg_isready"]
     ports:
       - 5432:5432
     networks:
@@ -14,6 +16,11 @@ services:
 
   rabbitmq:
     image: masstransit/rabbitmq:latest
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
     ports:
       - "5672:5672"
       - "15672:15672"
